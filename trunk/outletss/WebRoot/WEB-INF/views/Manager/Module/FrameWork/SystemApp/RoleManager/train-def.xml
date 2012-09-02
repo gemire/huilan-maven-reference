@@ -1,0 +1,24 @@
+<!DOCTYPE tiles-definitions PUBLIC
+      "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+      "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+  
+<tiles-definitions>
+   <!--<start id="spittleListTileDef"/>--> 
+   <definition name="RoleManager/RoleList" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/RoleManager/RoleList.jsp" />
+   </definition>
+   <!--<end id="spittleListTileDef"/>-->
+   <definition name="RoleManager/RoleManager" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/RoleManager/RoleManager.jsp" />
+   </definition>   
+   <definition name="RoleManager/RolePermissionManager" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/RoleManager/RolePermissionManager.jsp" />
+   </definition>
+   <definition name="RoleManager/RolePermissionForm" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/RoleManager/RolePermissionForm.jsp" />
+   </definition>
+</tiles-definitions>

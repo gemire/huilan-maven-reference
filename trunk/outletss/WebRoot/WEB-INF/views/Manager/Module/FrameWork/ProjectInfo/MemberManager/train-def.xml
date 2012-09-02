@@ -1,0 +1,18 @@
+<!DOCTYPE tiles-definitions PUBLIC
+      "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+      "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+  
+<tiles-definitions>
+   <!--<start id="spittleListTileDef"/>--> 
+   <definition name="MemberManager/List" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/ProjectInfo/MemberManager/List.jsp" />
+   </definition>
+   <!--<end id="spittleListTileDef"/>-->
+   
+   <definition name="MemberManager/Manager" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/ProjectInfo/MemberManager/Manager.jsp" />
+   </definition>
+   
+</tiles-definitions>

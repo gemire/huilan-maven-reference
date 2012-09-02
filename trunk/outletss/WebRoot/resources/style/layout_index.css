@@ -1,0 +1,52 @@
+@charset "utf-8";
+/*************************************
+* 文件名称：layout_index.css
+
+* 内容概要:首页布局样式
+*************************************/
+
+/*首页框架布局样式---------------*/
+/*根容器*/ 
+#box_root {
+	width: 1002px;
+	margin: 0px auto;
+}
+
+/*头部导航*/ 
+#box_header {
+	width: 100%;	clear:both;
+}
+
+#box_logo {
+	clear:both;
+	width: 100%;
+}
+
+#nav{	
+width: 100%;
+clear: both; 
+}
+
+/*主栏*/  
+#box_main { 
+	width:1002px; background: url(../images/bg_01.gif) repeat-x left top;
+	clear:both; padding-top:40px;
+}
+/*左栏*/ 
+#box_left {
+	float: left;
+	width: 464px; display:inline; margin-left:36px;
+}
+/*右栏*/
+#box_right {
+	float: right; 
+	width: 414px; display:inline; margin-right:40px;
+}
+
+/*底部版权*/  
+#box_footer {
+	width: 926px;
+	clear:both;
+	margin:10px 40px 40px 36px;	
+}
+
