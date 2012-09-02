@@ -31,24 +31,10 @@
 		   <concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
 		</session-management>
 		 <!-- <custom-filter ref="myFilter" before="FILTER_SECURITY_INTERCEPTOR"/> -->
-	</http>
-	
+	</http>	
 
 
-<!-- 配置自己的拦截器  --> 
-<!-- <beans:bean id="myFilter" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor"> 
-  <beans:property name="authenticationManager" ref="autheticationManager"></beans:property> 
-  <beans:property name="accessDecisionManager" > 
-    <beans:bean class="org.springframework.security.access.vote.AffirmativeBased"> 
-      <beans:property name="decisionVoters"> 
-        <beans:list> 
-          <beans:bean class="org.springframework.security.access.vote.RoleVoter" /> 
-        </beans:list> 
-      </beans:property> 
-    </beans:bean> 
-  </beans:property>  
-<beans:property name="securityMetadataSource" ref="myInvocationSecurityMetadataSource" /> 
-</beans:bean>  -->
+
  
 
 	<authentication-manager alias="authenticationManager">
