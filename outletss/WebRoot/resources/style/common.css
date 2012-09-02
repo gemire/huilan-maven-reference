@@ -1,0 +1,99 @@
+@charset "utf-8";
+/*************************************
+* 文件名称：common.css
+
+* 内容概要: 框架公用样式
+*************************************/
+/* 通用样式 */
+* {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+body {
+	font-family: "微软雅黑",Verdana, Arial, Helvetica, sans-serif,"宋体" ;
+	font-size:12px;
+	text-align:left; 
+	color:#666;
+}
+
+/* 标题样式 */
+
+h1, h2, h3, h4, h5, h6, p {
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-weight:normal
+}
+p{ line-height:24px; font-size:12px;}
+/* 列表样式 */
+ul, ol, li{
+	list-style:none
+}
+
+/* 链接样式 */
+a:link {
+color: #666;
+text-decoration: none;
+}		/* 未访问的链接 */
+a:visited {
+color: #666;
+text-decoration: none;
+}	/* 已访问的链接 */
+a:hover {
+color:#FF6600;
+text-decoration: none;
+}	/* 鼠标移动到链接上 */
+a:active {
+color:#FF0000;
+text-decoration: none;
+}	/* 选定的链接 */
+
+/*浮动*/
+
+.floatLeft {
+	float:left
+}
+.floatRight {
+	float:right
+}
+.floatNone {
+	float:none
+}
+/* 清除浮动 */
+.clearBoth {
+	clear:both;
+	/*控制分类后，各行高度不一样对不齐问题*/
+
+	width:100%;
+	height:1px;
+	font-size:0;
+	overflow:hidden;
+	/*控制分类后，各行高度不一样对不齐问题*/
+
+	line-height:0;
+}
+.clearLeft {
+	clear:left
+}
+.clearRight {
+	clear:Right
+}
+
+
+#box_nav {width:1002px;height:50px; line-height:50px; margin:0px auto; background:url(../images/nav_bg.gif) 0 50% repeat-x; }
+#box_nav ul{ margin-left:20px;}
+#box_nav li {float:left; font-size:14px; margin:0 10px;  }
+#box_nav li a {display:block; text-decoration:none; color:#fff; text-decoration:none;}
+#box_nav li a:hover {background:url(../images/li_l.gif) 0 0 no-repeat; color:#333;}
+#box_nav li a span {padding:0 14px 0 0; margin:0 0 0 14px; display:block;}
+#box_nav li a:hover span {background:url(../images/li_r.gif) 100% 0 no-repeat; color:#333;}
+.current {background:url(../images/li_l.gif) 0 0 no-repeat;}/*鼠标点击时变换背景，方便JS获取样式*/
+.current span{background:url(../images/li_r.gif) 100% 0 no-repeat;color:#333;}  /*鼠标点击时变换背景，方便JS获取样式*/
+
+#box_nav .fws{ float:right; margin-top:16px; margin-right:20px;}
+
+#box_links{ margin-top:20px; background:url(../images/title_07.gif) no-repeat left 50%;
+ height:30px; line-height:30px; _padding-top:12px; padding-left:120px;
+ border-bottom:1px solid #eee; border-top:1px  solid #eee;}
+ #box_links a{  margin:0 15px;}

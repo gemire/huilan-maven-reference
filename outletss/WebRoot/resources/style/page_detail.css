@@ -1,0 +1,127 @@
+@charset "utf-8";
+
+/*************************************
+* 文件名称：page_index.css
+
+* 内容概要:首页栏目样式
+*************************************/
+@import url("common.css"); /*引入通用样式*/
+
+/*内页框架布局样式---------------*/
+/*根容器*/ 
+#box_root {
+	width: 1002px;
+	margin: 0px auto;
+}
+
+/*头部导航*/ 
+#box_header {
+	width: 100%;	clear:both;
+}
+
+#box_logo {
+	clear:both;
+	width: 100%;
+}
+
+#nav {	
+width: 100%;
+clear: both; 
+}
+
+/*主栏*/  
+#box_main { 
+	width:1002px; background: url(../images/bg_02.gif) repeat-x left top;
+	clear:both;  position:relative;
+}
+
+/*左栏*/ 
+#box_left {
+	float: left; background:#fff;
+	width: 220px; display:inline; margin-left:14px;
+}
+/*右栏*/
+#box_right {
+	float: right; 
+	width: 720px; display:inline; 
+}
+
+/*底部版权*/  
+#box_footer {
+	width: 926px;
+	clear:both;
+	margin:20px 40px 50px 36px;	
+}
+
+
+
+/*左栏各栏目样式*/
+.ny_left_bg{ background:url(../images/ny_left-bg.png) repeat-y left top; }
+
+.ny_nav{ margin-bottom:20px;}
+.ny_nav li{width:220px; margin-top:2px; border-bottom:1px solid #eee; font-size:13px; }
+.ny_nav li a{ display:block;width:160px; padding:14px 0; padding-left:60px;}
+.ny_nav li a:hover{ background:#667ab3; color:#fff;}
+.ny_nav li a.hover{ background:#667ab3; color:#fff;}
+.ny_nav li span{ font-size:10px;}
+
+/*右栏各栏目样式*/
+.ny_tit-01 img{ margin-top:72px;}
+
+.ny_right_bg-01{ background:url(../images/ny_bg-01.gif) no-repeat right top;}
+.ny_txt-01{ margin-top:30px; background:url(../images/ny_bg-02.gif) no-repeat right bottom; padding-right:60px; padding-bottom:270px; }
+.ny_txt-01 p{ text-indent:2em; line-height:26px;}
+
+.ny_right_bg-02{ background:url(../images/ny_bg-03.gif) no-repeat right top;}
+.ny_txt-02{ margin-top:60px; padding-bottom:450px; }
+.ny_txt-02 p{ text-indent:2em; line-height:26px; width:340px; margin-left:50px; }
+
+.ny_txt-03{ margin-top:60px; padding-bottom:40px; }
+.ny_txt-03 table p{ width:230px; margin:20px 0 0 10px;  text-indent:2em;}
+
+.ny_right_bg-04{ background:url(../images/ny_bg-04.gif) no-repeat right top;}
+.ny_txt-04{ margin-top:60px; padding-bottom:40px; }
+.ny_txt-04  p{ width:260px; margin:20px 0 0 50px;  text-indent:2em;}
+
+.ny_txt-05{ margin-top:60px; padding-bottom:40px; }
+
+.ny_txt-06{ margin-top:40px; padding-bottom:40px; }
+.ny_txt-06 .ny_research_list{ margin:20px 0 0 30px; width:430px;}
+.ny_txt-06 .ny_research_list h1{ width:360px; height:24px; line-height:24px; margin-top:10px; font-weight:bold;
+ background: url(../images/ny_list_bg.gif) no-repeat left 50%; padding-left:10px; padding-right:50px; 
+ overflow:hidden; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis;}
+.ny_txt-06 .ny_research_list a{ color:#fff;}
+.ny_txt-06 .ny_research_list p{ margin-top:10px; margin-left:15px; text-indent:2em; line-height:20px; width:390px;}
+
+.ny_txt-07{ margin-top:40px; padding-bottom:40px; }
+.ny_txt-07 .ny_news_list{ margin-top:20px; width:660px;}
+.ny_txt-07 .ny_news_list li.list{ margin-top:40px; border-top:2px solid #667ab3; border-bottom:2px solid #667ab3;height:36px; line-height:36px;}
+.ny_txt-07 .ny_news_list h1{ float:left; padding-left:10px; font-weight:bold; width:500px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis;}
+.ny_txt-07 .ny_news_list .more{ float:right; margin-top:25px;}
+.ny_txt-07 .ny_news_list li.list a{ color:#333; font-size:14px;}
+.ny_txt-07 .ny_news_list li.list a:hover{ color:#f60;}
+
+.rollBox{width:664px; height:167px;overflow:hidden; background: url(../images/news_bg.gif) no-repeat left center;}
+.rollBox .img1,.rollBox .img2{ margin-top:20px; cursor:pointer;}
+.rollBox .Cont{width:580px;overflow:hidden;margin:0 auto; margin-top:30px;}
+.rollBox .ScrCont{width:10000000px;}
+.rollBox .Cont .pic{width:140px;float:left;text-align:center;padding-right:6px;}
+*+html .rollBox .Cont .pic{width:140px;float:left;text-align:center;padding-right:6px;}
+.rollBox .Cont .pic img{display:block;margin:0 auto;}
+.rollBox #List1,.rollBox #List2{float:left;}
+
+
+.ny_right_bg-08{ background:url(../images/ny_bg-08.gif) no-repeat right top;  }
+.ny_txt-08{ padding-top:400px; padding-bottom:140px; }
+.ny_txt-08 p{  margin-left:280px; line-height:30px;}
+.ny_txt-08 p strong{ color:#333;}
+
+
+.ny_current{ padding-top:40px;  margin-left:20px; height:30px; line-height:30px; }
+.ny_right_bg-011{ background:url(../images/ny_bg-05.gif) no-repeat right bottom; padding-bottom:300px;}
+
+.ny_text-01{ width:80%; text-align:center; margin-top:80px; padding-bottom:30px; margin-left:40px;}
+.ny_text-01 h1{ font-size:24px; font-weight:bold; height:60px; line-height:40px; }
+.ny_text-01 img{ margin:10px 0;}
+.ny_text-01 p{ text-align: left; text-indent:2em; margin-top:20px;}
+

@@ -1,0 +1,16 @@
+<!DOCTYPE tiles-definitions PUBLIC
+      "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+      "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+  
+<tiles-definitions>
+   <!--<start id="spittleListTileDef"/>--> 
+   <definition name="UserManager/List" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/UserManager/List.jsp" />
+   </definition>
+   <!--<end id="spittleListTileDef"/>-->
+   <definition name="UserManager/UserManager" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/UserManager/UserManager.jsp" />
+   </definition>
+</tiles-definitions>

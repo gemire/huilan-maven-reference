@@ -1,0 +1,27 @@
+<!DOCTYPE tiles-definitions PUBLIC
+      "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+      "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+  
+<tiles-definitions>
+   <!--<start id="spittleListTileDef"/>--> 
+   <definition name="FieldManager/Default" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/FieldManager/Default.jsp" />
+   </definition>
+   <!--<end id="spittleListTileDef"/>-->
+   
+   <definition name="FieldManager/FieldValueManager" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/FieldManager/FieldValueManager.jsp" />
+   </definition>
+   
+   <definition name="FieldManager/FieldValueManagerForm" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/FieldManager/FieldValueManagerForm.jsp" />
+   </definition>
+   
+   <definition name="FieldManager/FieldValueBox" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/FieldManager/FieldValueBox.jsp" />
+   </definition>
+</tiles-definitions>
