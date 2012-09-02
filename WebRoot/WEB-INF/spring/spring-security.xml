@@ -1,59 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans       
+                           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+                           http://www.springframework.org/schema/security
+                           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	
-
-	
-	<!-- 接口方法保护  @Secured("IS_AUTHENTICATED_ANONYMOUSLY")  -->
-   <!-- <global-method-security secured-annotations="enabled" pre-post-annotations="enabled" jsr250-annotations="enabled" proxy-target-class="true"/> -->
-   
-   
-	<http pattern="/images/**" security="none"/>
-    <http pattern="/login" security="none"/>
-    <http pattern="/home" security="none"/>
-    
-<!-- access-decision-manager-ref="myAccessDecisionManagerBean"  use-expressions="true" access="permitAll" access="hasRole('ROLE_USER')"-->
-	<http auto-config="true" use-expressions="true"  access-denied-page="/accessDenied">
-	    <!-- <intercept-url pattern="/images/**" access="IS_AUTHENTICATED_ANONYMOUSLY" /> -->
-		<intercept-url pattern="/welcome*" access="isAuthenticated()" />
-		<intercept-url pattern="/Manager/**" access="isAuthenticated()" />
-		<form-login login-page="/login" authentication-failure-url="/loginfailed" 
-		login-processing-url="/openv-login"	always-use-default-target="true" default-target-url="/welcome"/>
-		<!-- <access-denied-handler error-page="/common/403.jsp"/> -->		 
-		<logout logout-success-url="/home" delete-cookies="JSESSIONID" logout-url="/logout"/>
-				
-		<session-management session-fixation-protection="migrateSession" invalid-session-url="/sessionTimeout">
-		   <concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
-		</session-management>
-		 <!-- <custom-filter ref="myFilter" before="FILTER_SECURITY_INTERCEPTOR"/> -->
-	</http>	
-
-
-
- 
-
-	<authentication-manager alias="authenticationManager">
-		<!-- <authentication-provider>
-		<password-encoder hash="sha" >
-		<salt-source user-property="username"/>  
-		</password-encoder> 
-			<user-service>
-				<user name="mkyong" password="7c4a8d09ca3762af61e59520943dc26494f8941b" authorities="ROLE_USER" />
-			</user-service>
-		</authentication-provider> -->
+    <!-- 接口方法保护  @Secured("IS_AUTHENTICATED_ANONYMOUSLY")  -->
+    <!-- <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled" jsr250-annotations="enabled" proxy-target-class="true"/> -->
+    <!-- <security:http pattern="/images/**" security="none"/>
+    <security:http pattern="/login" security="none"/> -->
+    <security:http pattern="/Manager/Login*" security="none"/> 
+    <!-- access-decision-manager-ref="myAccessDecisionManagerBean"  use-expressions="true" access="permitAll" access="hasRole('ROLE_USER')"-->
+	<security:http auto-config="true" use-expressions="true"  access-denied-page="/Manager/accessDenied">
+	    <!-- <intercept-url pattern="/images/**" access="IS_AUTHENTICATED_ANONYMOUSLY" /> -->		
+		<security:intercept-url pattern="/Manager/Module/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/Manager/Main*" access="isAuthenticated()" />
+		<security:intercept-url pattern="/Manager/left" access="isAuthenticated()" />
+		<security:intercept-url pattern="/Manager/right" access="isAuthenticated()" />
+		<security:intercept-url pattern="/Manager/UserSet*" access="isAuthenticated()" />
+		<security:intercept-url pattern="/ckeditor/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/ckfinder/**" access="isAuthenticated()" />		
+        <security:intercept-url pattern="/**" access="permitAll" />		
+		<!-- <security:intercept-url pattern="/Manager/Login*" access="isAnonymous()" />-->
+		<!-- <security:intercept-url pattern="/Manager/Logout*" access="isAnonymous()" /> -->
+		<security:form-login login-page="/Manager/Login" authentication-failure-url="/Manager/loginfailed" 
+		login-processing-url="/openv-login"	always-use-default-target="true" default-target-url="/Manager/Main"/>
+		<!-- <access-denied-handler error-page="/common/403.jsp"/>  invalidate-session="true"-->
+		<!--invalidate-session：指定在退出系统时是否要销毁Session -->	 
+		<security:logout logout-success-url="/Manager/Login" delete-cookies="JSESSIONID" logout-url="/Manager/Logout"/>				
+		<security:session-management session-fixation-protection="migrateSession" invalid-session-url="/Manager/sessionTimeout">
+		   <security:concurrency-control max-sessions="1" error-if-maximum-exceeded="true"/>
+		</security:session-management>		 
+	</security:http>
+	<security:authentication-manager alias="authenticationManager">		
 		<!-- 使用自定义UserDetailsService -->
-		<authentication-provider user-service-ref="userServiceproxy">
-		  <password-encoder ref="encoder"/>		  
-		</authentication-provider>
-	</authentication-manager>	
-	
-	
-	<!-- <beans:bean id="myInvocationSecurityMetadataSource" class="com.huilan.service.MyInvocationSecurityMetadataSource" init-method="init"/> -->
-
-	
-</beans:beans>
+		<security:authentication-provider user-service-ref="sysUserService">
+		  <security:password-encoder ref="encoder"/>		  
+		</security:authentication-provider>
+	</security:authentication-manager>
+	<bean class="org.springframework.security.authentication.event.LoggerListener" />
+	<!-- 用户的密码加密或解密 -->
+	<bean id="encoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+	  <constructor-arg value="my-secret-key" />
+	</bean>
+	<!--<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />  -->
+	<bean id="sysUserService" class="com.hedgehog.service.SysUserServiceImpl"/> 
+</beans>
