@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.hedgehog.domain.*"%>
-<%@page import="com.hedgehog.Utils.QueryPara"%>
+<%@page import="com.hedgehog.outletss.domain.*"%>
+<%@page import="com.hedgehog.outletss.Utils.QueryPara"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
@@ -8,12 +8,12 @@
 <!-- 头部菜单 Start -->
 	        <table border='0' cellpadding='0' cellspacing='0' width='100%' align='center'>
               <tr>
-                <td class='menubar_title'><img border='0' src='${ctx}/Manager/images/ICON/applist.gif' align='absmiddle' hspace='3' vspace='3'/>&nbsp;索娱新闻</td>
+                <td class='menubar_title'><img border='0' src='${ctx}/Manager/images/ICON/applist.gif' align='absmiddle' hspace='3' vspace='3'/>&nbsp;新闻管理</td>
                 <td class='menubar_readme_text' valign='bottom'><img src='${ctx}/Manager/images/ICON/office.gif' align='absMiddle' border='0' />&nbsp;帮助？</td>
               </tr>
               <tr>
-                <td height='27px' class='menubar_function_text'>目前操作功能：索娱新闻列表</td>
-                <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='?cmd=new';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/new.gif">&nbsp;新增索娱新闻</td></tr></table></td>
+                <td height='27px' class='menubar_function_text'>目前操作功能：新闻列表</td>
+                <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='?cmd=new';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/new.gif">&nbsp;新增新闻</td></tr></table></td>
               </tr>
               <tr><td height='5px' colspan='2'></td></tr>
             </table>
@@ -32,7 +32,7 @@
 		        <TBODY>
                        <TR>
 				         <TD width=3><IMG id=tabImgLeft__0 height=22 src='${ctx}/Manager/images/Menu/tab_unactive_left.gif'  width=3></TD>
-				         <TD class=tab id=tabLabel__0 onclick='javascript:tabClick(0,2)' background='${ctx}/Manager/images/Menu/tab_unactive_bg.gif' UNSELECTABLE='on'>索娱新闻列表</TD>
+				         <TD class=tab id=tabLabel__0 onclick='javascript:tabClick(0,2)' background='${ctx}/Manager/images/Menu/tab_unactive_bg.gif' UNSELECTABLE='on'>新闻列表</TD>
 				         <TD width=3><IMG id=tabImgRight__0 height=22 src='${ctx}/Manager/images/Menu/tab_unactive_right.gif' width=3></TD>
 			           </TR>
 		        </TBODY>
@@ -66,8 +66,8 @@
         <DIV id='tabContent__0' style='display:none'>
             <div>
 <%
-            List<SyNew> list=(List<SyNew>)request.getAttribute("list"); 
-  QueryPara<SyNew> qp=(QueryPara<SyNew>)request.getAttribute("QueryPara"); 
+            List<BizNew> list=(List<BizNew>)request.getAttribute("list"); 
+  QueryPara<BizNew> qp=(QueryPara<BizNew>)request.getAttribute("queryPara"); 
   int pagecount=qp.getPagecount();
   int pageNo=qp.getPageNo();  
   int pagesize=qp.getPagesize();
@@ -85,8 +85,8 @@
 			<th scope="col">更新时间</th><td>操作</td>
 		</tr>
 		<%
-	Iterator<SyNew> it=list.iterator();  
-  SyNew syNew=null;
+	Iterator<BizNew> it=list.iterator();  
+  BizNew syNew=null;
   //SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");//.format(news.getNewsUpdateTime());
   //df.format(news.getNewsUpdateTime())
   //news.getNewsUpdateTime();
@@ -94,15 +94,16 @@
   
   while(it.hasNext())
   {
-  temp++;
-    syNew=(SyNew)it.next();
+    temp++;
+    syNew=(BizNew)it.next();
        
 		 %>
 		<tr class="<%=temp%2==1?"row":"row1"%>" align="center" style="height:28px;">
-			<td style="width:5px;"> <input name='Checkbox' id='Checkbox' value='<%=syNew.getNewsId()%>' type='checkbox' /></td><td>
-                        <%=temp+(pageNo-1)*pagesize%>
-                        </td><td><%=syNew.getNewsTitle()%></td><td>                        
-                        <%=syNew.getFieldValue().getVtext()%>
+			<td style="width:5px;"> <input name='Checkbox' id='Checkbox' value='<%=syNew.getNewsId()%>' type='checkbox' /></td>
+			<td><%=temp+(pageNo-1)*pagesize%></td>
+                        <td><%=syNew.getNewsTitle()%></td>
+                        <td>                        
+                        <%=syNew.getNewsCate()%>
                         </td>
                         <td><%=syNew.getNewsSource()%></td>
                         <td><%=syNew.getNewsHits()%></td><td><%=syNew.getNewsUpdatetime()%></td><td><a href="?cmd=edit&IDX=<%=syNew.getNewsId()%>">编辑</a>||<a href="JavaScript:DelData('?cmd=del&IDX=<%=syNew.getNewsId()%>')">删除</a></td>
@@ -346,12 +347,12 @@ function SelectAll()
    if(document.getElementById("CheckboxAll").value=="0")
 　 {
 　　 IsTrue=true;
-　　 document.getElementById("CheckboxAll").value="1"
+　　 document.getElementById("CheckboxAll").value="1";
 　 }
 　 else
 　 {
 　　IsTrue=false;
-　　document.getElementById("CheckboxAll").value="0"
+　　document.getElementById("CheckboxAll").value="0";
 　　}
 　　
 　for(var i=0;i<e.length;i++)

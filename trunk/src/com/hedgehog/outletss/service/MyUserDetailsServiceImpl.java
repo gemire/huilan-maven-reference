@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hedgehog.outletss.domain.SysUser;
 import com.hedgehog.outletss.persistence.SysUserDao;
 
-@Service("userService")
+@Service("myUserDetailsService")
 @Transactional(propagation=Propagation.REQUIRED)
 public class MyUserDetailsServiceImpl implements MyUserDetailsService {
 	private SysUserDao sysUserDao;	

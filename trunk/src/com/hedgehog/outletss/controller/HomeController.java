@@ -41,12 +41,41 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	@RequestMapping(value={"/about"}, method=RequestMethod.GET)
+	public String shownewsviedsw(ModelMap model)
+	{
+		System.out.println("有没有到这里news页 修改文件");
+		//model.addAttribute("title", "中科汇联");
+		return "about";
+	}
+	@RequestMapping(value={"/inchina"}, method=RequestMethod.GET)
+	public String shownewsvidsedsw(ModelMap model)
+	{
+		System.out.println("有没有到这里news页 修改文件");
+		//model.addAttribute("title", "中科汇联");
+		return "inchina";
+	}
+	@RequestMapping(value={"/research"}, method=RequestMethod.GET)
+	public String shownewsvidseddsw(ModelMap model)
+	{
+		System.out.println("有没有到这里news页 修改文件");
+		//model.addAttribute("title", "中科汇联");
+		return "research";
+	}
 	@RequestMapping(value={"/news"}, method=RequestMethod.GET)
 	public String shownewsview(ModelMap model)
 	{
 		System.out.println("有没有到这里news页 修改文件");
 		model.addAttribute("title", "中科汇联");
 		return "news";
+	}
+	@RequestMapping(value={"/conter"}, method=RequestMethod.GET)
+	public String shownfewsvidsedsw(ModelMap model)
+	{
+		System.out.println("有没有到这里news页 修改文件");
+		//model.addAttribute("title", "中科汇联");
+		return "conter";
 	}
 
 }
