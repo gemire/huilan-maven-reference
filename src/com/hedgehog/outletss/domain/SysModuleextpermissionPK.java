@@ -1,5 +1,5 @@
 package com.hedgehog.outletss.domain;
-// Generated 2012-9-2 17:37:25 by Hibernate Tools 3.2.2.GA
+// Generated 2012-9-16 16:58:05 by Hibernate Tools 3.2.2.GA
 
 
 
@@ -9,7 +9,19 @@ package com.hedgehog.outletss.domain;
 public class SysModuleextpermissionPK  implements java.io.Serializable {
 
 
+     /**
+      *                @hibernate.property
+ *                 column="ModuleID"
+ *                 length="40"
+ *             
+     */
      private String moduleId;
+     /**
+      *                @hibernate.property
+ *                 column="PermissionValue"
+ *                 length="10"
+ *             
+     */
      private Integer permissionValue;
 
     public SysModuleextpermissionPK() {
@@ -20,6 +32,12 @@ public class SysModuleextpermissionPK  implements java.io.Serializable {
        this.permissionValue = permissionValue;
     }
    
+    /**       
+     *      *                @hibernate.property
+     *                 column="ModuleID"
+     *                 length="40"
+     *             
+     */
     public String getModuleId() {
         return this.moduleId;
     }
@@ -27,6 +45,12 @@ public class SysModuleextpermissionPK  implements java.io.Serializable {
     public void setModuleId(String moduleId) {
         this.moduleId = moduleId;
     }
+    /**       
+     *      *                @hibernate.property
+     *                 column="PermissionValue"
+     *                 length="10"
+     *             
+     */
     public Integer getPermissionValue() {
         return this.permissionValue;
     }

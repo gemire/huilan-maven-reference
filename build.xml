@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- build.xml - a simple Ant buildfile -->
+<project name="Simple Buildfile" default="compile" basedir=".">
+
+  <property name="tomcat.home" value="C:\apache-tomcat-7.0.29"/>
+  <property name="webapps.home" value="${tomcat.home}\webapps"/>
+  <!-- The directory containing source code -->
+  <property name="src.dir" value="src"/>
+
+  <property name="web.dir" value="WebRoot"/>
+
+  <!-- Temporary build directories -->
+  <property name="build.dir" value="${web.dir}\WEB-INF"/>
+  <property name="build.classes" value="${build.dir}/classes"/>
+  <property name="build.lib" value="${build.dir}/lib"/>
+	
+ <property name="warfile" value="outletss.war"/>
+
+      
+    <!-- 编译工程所需的JAR包 -->  
+    <path id="compile.classpath">  
+        <pathelement location="${build.classes}"/>  
+        <fileset dir="${build.lib}">  
+                <include name="*.jar"/>  
+                <include name="*.zip"/>  
+        </fileset>  
+        <fileset dir="lib">  
+            <include name="*.jar"/>  
+        </fileset>  
+<!--        <pathelement location="${tomcat.home}/common/classes"/>  -->
+    </path>  
+
+  <!-- Target to create the build directories prior to the -->
+  <!-- compile target. -->
+  <target name="prepare">
+<!--    <mkdir dir="${build.dir}"/>-->
+    <mkdir dir="${build.classes}"/>
+<!--    <mkdir dir="${build.lib}"/>-->
+  </target>
+
+  <target name="clean" description="Remove all generated files.">
+    <delete dir="${build.classes}"/>
+  </target>
+
+  <target name="compile" depends="prepare"
+          description="Compiles all source code.">
+    <javac srcdir="${src.dir}" destdir="${build.classes}">
+
+    <classpath refid="compile.classpath"/>  
+        </javac> 
+
+         <copy todir="${build.classes}">  
+            <fileset dir="${src.dir}">  
+<!--                <include name="**/*.properties"/>  -->
+<!--                <include name="**/*.prop"/>  -->
+				<include name="**/*.*"/>
+				<exclude name="**/*.java*"/>
+            </fileset>  
+        </copy>  
+  </target>
+
+    <target name="war" depends="compile" >  
+        <war warfile="${warfile}" webxml="${build.dir}/web.xml">  
+            <fileset dir="${web.dir}"/>  
+        </war>  
+    </target>  
+
+ <target name="deploy" depends="war">  
+        <copy todir="${webapps.home}" file="${warfile}" verbose="true"/>  
+    </target>  
+</project>
+

@@ -1,5 +1,5 @@
 package com.hedgehog.outletss.domain;
-// Generated 2012-9-2 17:37:25 by Hibernate Tools 3.2.2.GA
+// Generated 2012-9-16 16:58:05 by Hibernate Tools 3.2.2.GA
 
 
 
@@ -9,8 +9,26 @@ package com.hedgehog.outletss.domain;
 public class SysRolepermissionPK  implements java.io.Serializable {
 
 
+     /**
+      *                @hibernate.property
+ *                 column="P_RoleID"
+ *                 length="40"
+ *             
+     */
      private String proleId;
+     /**
+      *                @hibernate.property
+ *                 column="P_ApplicationID"
+ *                 length="40"
+ *             
+     */
      private String papplicationId;
+     /**
+      *                @hibernate.property
+ *                 column="P_PageCode"
+ *                 length="20"
+ *             
+     */
      private String ppageCode;
 
     public SysRolepermissionPK() {
@@ -22,6 +40,12 @@ public class SysRolepermissionPK  implements java.io.Serializable {
        this.ppageCode = ppageCode;
     }
    
+    /**       
+     *      *                @hibernate.property
+     *                 column="P_RoleID"
+     *                 length="40"
+     *             
+     */
     public String getProleId() {
         return this.proleId;
     }
@@ -29,6 +53,12 @@ public class SysRolepermissionPK  implements java.io.Serializable {
     public void setProleId(String proleId) {
         this.proleId = proleId;
     }
+    /**       
+     *      *                @hibernate.property
+     *                 column="P_ApplicationID"
+     *                 length="40"
+     *             
+     */
     public String getPapplicationId() {
         return this.papplicationId;
     }
@@ -36,6 +66,12 @@ public class SysRolepermissionPK  implements java.io.Serializable {
     public void setPapplicationId(String papplicationId) {
         this.papplicationId = papplicationId;
     }
+    /**       
+     *      *                @hibernate.property
+     *                 column="P_PageCode"
+     *                 length="20"
+     *             
+     */
     public String getPpageCode() {
         return this.ppageCode;
     }

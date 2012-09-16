@@ -597,7 +597,7 @@
 		</dependency>     -->		
   </dependencies>
   <build>
-    <finalName>huilan</finalName>
+    <finalName>outletss</finalName>
     <sourceDirectory>${basedir}/src</sourceDirectory>
     <outputDirectory>${basedir}/WebRoot/WEB-INF/classes</outputDirectory>
     <resources>
@@ -613,7 +613,7 @@
         <artifactId>maven-war-plugin</artifactId>
         <configuration>
           <webappDirectory>${basedir}/WebRoot</webappDirectory>
-          <warSourceDirectory>${basedir}/WebRoot</warSourceDirectory>
+          <warSourceDirectory>${basedir}/WebRoot</warSourceDirectory>          
         </configuration>
       </plugin>
       
@@ -632,7 +632,7 @@
         <configuration> 
          <url>http://localhost/manager/html</url> 
          <server>tomcat</server> 
-         <path>/huilan</path>
+         <path>/outletss</path>
         </configuration> 
        </plugin>
     </plugins>

@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*,org.apache.solr.client.solrj.response.FacetField,org.apache.solr.client.solrj.response.FacetField.Count" pageEncoding="utf-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.net.URLEncoder" %>
-<%@page import="com.hedgehog.Utils.QueryPara"%>
+<%@page import="com.hedgehog.outletss.Utils.QueryPara"%>
 <%@page import="org.apache.solr.common.SolrDocument"%>
 <%@page import="org.apache.solr.common.SolrDocumentList"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

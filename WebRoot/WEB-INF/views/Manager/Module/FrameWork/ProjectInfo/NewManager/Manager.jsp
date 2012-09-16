@@ -6,12 +6,12 @@
 <!-- 头部菜单 Start -->
 	        <table border='0' cellpadding='0' cellspacing='0' width='100%' align='center'>
               <tr>
-                <td class='menubar_title'><img border='0' src='${ctx}/Manager/images/ICON/applist.gif' align='absmiddle' hspace='3' vspace='3'>&nbsp;索娱新闻</td>
+                <td class='menubar_title'><img border='0' src='${ctx}/Manager/images/ICON/applist.gif' align='absmiddle' hspace='3' vspace='3'>&nbsp;新闻管理</td>
                 <td class='menubar_readme_text' valign='bottom'><img src='${ctx}/Manager/images/ICON/office.gif' align='absMiddle' border='0' />&nbsp;帮助？</td>
               </tr>
               <tr>
-                <td height='27px' class='menubar_function_text'>目前操作功能：修改索娱新闻</td>
-                <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='List';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/list.gif">&nbsp;列表索娱新闻</td><td class="menubar_button" id="button_1" OnClick="JavaScript:DelData('?cmd=del&IDX=626')" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/delete.gif">&nbsp;删除索娱新闻</td></tr></table></td>
+                <td height='27px' class='menubar_function_text'>目前操作功能：修改新闻</td>
+                <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='List';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/list.gif">&nbsp;列表新闻</td><td class="menubar_button" id="button_1" OnClick="JavaScript:DelData('?cmd=del&IDX=626')" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/delete.gif">&nbsp;删除新闻</td></tr></table></td>
               </tr>
               <tr><td height='5px' colspan='2'></td></tr>
             </table>
