@@ -1,14 +1,20 @@
 package com.hedgehog.outletss.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 // Generated 2012-9-16 16:58:05 by Hibernate Tools 3.2.2.GA
 
 
 
 /**
  *        @hibernate.class
- *         table="sys_group"
+ *         table="sys_Group"
  *     
  */
+
 public class SysGroup  implements java.io.Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 
      /**
@@ -18,7 +24,7 @@ public class SysGroup  implements java.io.Serializable {
  *             column="GroupID"
  *         
      */
-     private String groupId;
+     private Integer groupId;
      /**
       *            @hibernate.property
  *             column="G_CName"
@@ -33,7 +39,7 @@ public class SysGroup  implements java.io.Serializable {
  *             not-null="true"
  *         
      */
-     private String gparentId;
+     private Integer gparentId;
      /**
       *            @hibernate.property
  *             column="G_ShowOrder"
@@ -64,24 +70,7 @@ public class SysGroup  implements java.io.Serializable {
      */
      private Byte gdelete;
 
-    public SysGroup() {
-    }
-
-	
-    public SysGroup(String groupId, String gparentId, int gshowOrder) {
-        this.groupId = groupId;
-        this.gparentId = gparentId;
-        this.gshowOrder = gshowOrder;
-    }
-    public SysGroup(String groupId, String gcname, String gparentId, int gshowOrder, Integer glevel, Integer gchildCount, Byte gdelete) {
-       this.groupId = groupId;
-       this.gcname = gcname;
-       this.gparentId = gparentId;
-       this.gshowOrder = gshowOrder;
-       this.glevel = glevel;
-       this.gchildCount = gchildCount;
-       this.gdelete = gdelete;
-    }
+    
    
     /**       
      *      *            @hibernate.id
@@ -90,11 +79,11 @@ public class SysGroup  implements java.io.Serializable {
      *             column="GroupID"
      *         
      */
-    public String getGroupId() {
+    public Integer getGroupId() {
         return this.groupId;
     }
     
-    public void setGroupId(String groupId) {
+    public void setGroupId(Integer groupId) {
         this.groupId = groupId;
     }
     /**       
@@ -117,11 +106,11 @@ public class SysGroup  implements java.io.Serializable {
      *             not-null="true"
      *         
      */
-    public String getGparentId() {
+    public Integer getGparentId() {
         return this.gparentId;
     }
     
-    public void setGparentId(String gparentId) {
+    public void setGparentId(Integer gparentId) {
         this.gparentId = gparentId;
     }
     /**       

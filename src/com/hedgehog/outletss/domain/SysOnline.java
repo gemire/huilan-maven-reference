@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 /**
  *        @hibernate.class
- *         table="sys_online"
+ *         table="sys_Online"
  *     
  */
 public class SysOnline  implements java.io.Serializable {

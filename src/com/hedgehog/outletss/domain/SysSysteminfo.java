@@ -1,14 +1,33 @@
 package com.hedgehog.outletss.domain;
+
+import static javax.persistence.GenerationType.IDENTITY;
+import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
+import static org.apache.commons.lang.builder.ToStringBuilder.reflectionToString;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 // Generated 2012-9-16 16:58:05 by Hibernate Tools 3.2.2.GA
+
+import org.hibernate.annotations.GenericGenerator;
 
 
 
 /**
  *        @hibernate.class
- *         table="sys_systeminfo"
+ *         table="sys_SystemInfo"
  *     
  */
-public class SysSysteminfo  implements java.io.Serializable {
+@Entity
+@Table(name="sys_SystemInfo")
+@org.hibernate.annotations.Proxy(lazy = false)
+public class SysSystemInfo  implements java.io.Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 
      /**
@@ -18,7 +37,7 @@ public class SysSysteminfo  implements java.io.Serializable {
  *             column="SystemID"
  *         
      */
-     private String systemId;
+     private Integer systemId;
      /**
       *            @hibernate.property
  *             column="S_Name"
@@ -48,20 +67,7 @@ public class SysSysteminfo  implements java.io.Serializable {
      */
      private String slicensed;
 
-    public SysSysteminfo() {
-    }
-
-	
-    public SysSysteminfo(String systemId) {
-        this.systemId = systemId;
-    }
-    public SysSysteminfo(String systemId, String sname, String sversion, byte[] ssystemConfigData, String slicensed) {
-       this.systemId = systemId;
-       this.sname = sname;
-       this.sversion = sversion;
-       this.ssystemConfigData = ssystemConfigData;
-       this.slicensed = slicensed;
-    }
+    
    
     /**       
      *      *            @hibernate.id
@@ -70,11 +76,15 @@ public class SysSysteminfo  implements java.io.Serializable {
      *             column="SystemID"
      *         
      */
-    public String getSystemId() {
+   
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "SystemID",unique=true, nullable=false)
+    public Integer getSystemId() {
         return this.systemId;
     }
     
-    public void setSystemId(String systemId) {
+    public void setSystemId(Integer systemId) {
         this.systemId = systemId;
     }
     /**       
@@ -83,6 +93,7 @@ public class SysSysteminfo  implements java.io.Serializable {
      *             length="50"
      *         
      */
+    @Column(name="S_Name",length=50)
     public String getSname() {
         return this.sname;
     }
@@ -96,6 +107,7 @@ public class SysSysteminfo  implements java.io.Serializable {
      *             length="50"
      *         
      */
+    @Column(name="S_Version",length=50)
     public String getSversion() {
         return this.sversion;
     }
@@ -109,6 +121,7 @@ public class SysSysteminfo  implements java.io.Serializable {
      *             length="2147483647"
      *         
      */
+    @Column(name="S_SystemConfigData",length=2147483647)
     public byte[] getSsystemConfigData() {
         return this.ssystemConfigData;
     }
@@ -122,6 +135,7 @@ public class SysSysteminfo  implements java.io.Serializable {
      *             length="50"
      *         
      */
+    @Column(name="S_Licensed",length=50)
     public String getSlicensed() {
         return this.slicensed;
     }
@@ -130,7 +144,21 @@ public class SysSysteminfo  implements java.io.Serializable {
         this.slicensed = slicensed;
     }
 
-
+ // plumbing
+    @Override
+    public boolean equals(Object obj) {
+      return reflectionEquals(this, obj);
+    }
+    
+    @Override
+    public int hashCode() {
+      return reflectionHashCode(this);
+    }
+    
+    @Override
+    public String toString() {
+      return reflectionToString(this);
+    }
 
 
 }

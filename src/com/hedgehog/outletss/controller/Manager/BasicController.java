@@ -20,8 +20,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -37,42 +39,65 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ThemeResolver;
 import org.springframework.web.servlet.theme.CookieThemeResolver;
 
+import com.hedgehog.outletss.domain.SysModule;
+import com.hedgehog.outletss.domain.SysSystemInfo;
+import com.hedgehog.outletss.service.SysModuleService;
+import com.hedgehog.outletss.service.SysSystemInfoService;
+
 /**
  * 
  * @author Administrator
  *
  */
 @Controller
+@RequestMapping("/Manager")
 public class BasicController {
 	private static final Log log = LogFactory.getLog(BasicController.class);
+	
+	private SysSystemInfoService systemInfoService;
+	@Inject
+	public BasicController(SysSystemInfoService systemInfoService) {		
+		this.systemInfoService = systemInfoService;
+	}
+	
+//	private ApplicationsService applicationsService;		
+//
+//	@Inject
+//	public void setApplicationsService(ApplicationsService applicationsService) {
+//		this.applicationsService = applicationsService;
+//	}
+	
+	private SysModuleService sysModuleService;
+	@Inject
+	public void setModuleService(SysModuleService moduleService) {
+		this.sysModuleService = moduleService;
+	}
+	 
 	@Autowired  
     private ThemeResolver themeResolver;
 	//forward
-	/**
-	 * 欢迎页面
-	 * @param theme
-	 * @param request
-	 * @param response
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value={"/welcome"},method=GET)
+	@RequestMapping(value={"/Main"},method=GET)
 	public String manager(			
 			@RequestParam(value="theme", defaultValue="default") String theme,
 			HttpServletRequest request,
 			HttpServletResponse response,
-			ModelMap modelMap,
-			Principal principal
-			) 
+			ModelMap modelMap) 
 	{
-//		//获取用户名 第一种方式
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//		auth.getAuthorities()
-//	    String name = auth.getName(); //get logged in username
-//		//第二种方式
-//	    User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//	    String name = user.getUsername(); //get logged in username
-		//disanzhongfangshi
+//		List <GrantedAuthority> list=(List<GrantedAuthority>) auth.getAuthorities();
+//		for(GrantedAuthority au:list)
+//		{
+//			System.out.println(au.getAuthority());
+//		}
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		log.info("当前用户："+userDetails.getUsername());
+		List <GrantedAuthority> list=(List<GrantedAuthority>) userDetails.getAuthorities();
+		for(GrantedAuthority au:list)
+		{
+			log.info(au.getAuthority());
+		}
+		//User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
 		//@CookieValue(value="sysuser",defaultValue="") String cookieuserName,
 		
 		System.out.println("theme:"+theme);
@@ -85,78 +110,153 @@ public class BasicController {
 		//themecookie.setMaxAge(1200);
 		//themecookie.setPath("/Manager/");
  		//response.addCookie(themecookie);
-		//第三种方式
+ 		 
+//        SysSystemInfo systeminfo=new SysSystemInfo();
+//		
+//		QueryPara<SysSystemInfo> qp=new QueryPara<SysSystemInfo>();
+//		qp.setClazz(SysSystemInfo.class);			
+//		//SystemInfoService systemInfoService=new SystemInfoServiceImpl();
+//		List<SysSystemInfo> list=this.systemInfoService.getListForPage(qp);
+//		if(qp.getRecordcount()==0)
+//		{			
+//			this.systemInfoService.saveOrUpdate(systeminfo);
+//		}
+//		else
+//		{
+//			systeminfo=list.get(0);
+//		}
 		
-		String name = principal.getName();
-		modelMap.addAttribute("username", name);
-		modelMap.addAttribute("message", "Spring Security Custom Form example");
+		//SysSystemInfo systeminfo=this.systemInfoService.selectByPrimaryKey(1);
+		SysSystemInfo systeminfo=this.systemInfoService.getUniqueResult();
+		modelMap.addAttribute("FrameName", systeminfo.getSname());
+		modelMap.addAttribute("FrameNameVer",systeminfo.getSversion());		
+		modelMap.addAttribute("MenuStyle", 1);
+		return "Manager/Default";
+	}
+	//forward
+	@RequestMapping(value={"/left"},method=GET)
+	public String left(			
+			ModelMap modelMap) 
+	{		
+		//List<SysApplication> list=this.applicationsService.selectAllRecord();
+		//modelMap.addAttribute("menu", list);
+		//转移
+//		List<SysModule> list_parentModule=this.sysModuleService.selectParentModules();
+//		modelMap.addAttribute("module", list_parentModule);
 		
-
-		return "templatePage";
+//		if(list_parentModule.size()>0)
+//		{
+//			Iterator<SysModule> it=list_parentModule.iterator();  
+//			SysModule sysModule=null;
+//			while(it.hasNext())
+//			{
+//				sysModule=(SysModule)it.next();
+//				System.out.println("编号："+sysModule.getModuleId());
+//				System.out.println("父编号："+sysModule.getMparentId());
+//				System.out.println("模块名称："+sysModule.getMcname());
+//				System.out.println("应用ID："+sysModule.getMapplicationId());
+//				System.out.println("模块代号："+sysModule.getMpageCode());
+//				System.out.println("子模块数："+sysModule.getSubsysModules().size());
+//				if(sysModule.getSubsysModules().size()>0)
+//				{
+//					Iterator<SysModule> it2=sysModule.getSubsysModules().iterator();
+//					SysModule subsysModule=null;
+//					while(it2.hasNext())
+//					{
+//						subsysModule=(SysModule)it2.next();
+//						System.out.println("--编号："+subsysModule.getModuleId());
+//						System.out.println("--父编号："+subsysModule.getMparentId());
+//						System.out.println("--模块名称："+subsysModule.getMcname());
+//						System.out.println("--应用ID："+subsysModule.getMapplicationId());
+//						System.out.println("--模块代号："+subsysModule.getMpageCode());						
+//					}
+//					
+//					
+//				}
+//				System.out.println("------------------------");
+//			}			
+//		}
+		return "forward:/Manager/Module/FrameWork/SystemApp/ModuleManager/left";		
 	}
-	@RequestMapping(value="/login", method = RequestMethod.GET)
-	public String login(ModelMap model) {
- 
-		return "login";
- 
+	@RequestMapping(value={"/module"},method=GET)
+	public void leftf(			
+			ModelMap modelMap) 
+	{		
+//		SysModulePK comp_id=new SysModulePK();
+//		comp_id.setMapplicationId(3);
+//		comp_id.setMpageCode("H00");
+		
+		SysModule sysModule=this.sysModuleService.selectSysModuleByPrimaryKey(27);
+		
+		System.out.println("编号："+sysModule.getModuleId());
+		System.out.println("父编号："+sysModule.getMparentId());
+		System.out.println("模块名称："+sysModule.getMcname());
+		System.out.println("应用ID："+sysModule.getMapplicationId());
+		System.out.println("模块代号："+sysModule.getMpageCode());
+		System.out.println("子模块数："+sysModule.getSubsysModules().size());
+		
+		if(sysModule.getSubsysModules().size()>0)
+		{
+			Iterator<SysModule> it2=sysModule.getSubsysModules().iterator();
+			SysModule subsysModule=null;
+			while(it2.hasNext())
+			{
+				subsysModule=(SysModule)it2.next();
+				System.out.println("--编号："+subsysModule.getModuleId());
+				System.out.println("--父编号："+subsysModule.getMparentId());
+				System.out.println("--模块名称："+subsysModule.getMcname());
+				System.out.println("--应用ID："+subsysModule.getMapplicationId());
+				System.out.println("--模块代号："+subsysModule.getMpageCode());						
+			}
+		}
+	}
+	//forward
+	@RequestMapping(value={"/right"},method=GET)
+	public String right(			
+			@CookieValue(value="Subject",defaultValue="") String cookiesvalue,
+			HttpServletResponse response,
+			ModelMap model) 
+	{
+		
+//		log.info("取出Subject:"+cookiesvalue);
+//		if(!StringUtils.hasLength(cookiesvalue))
+//		{
+//			return "redirect:"+LOGIN_NAME;
+//		}
+//		//String key = "faydrian";
+//		try {
+//			cookiesvalue=DESPlus.decrypt(cookiesvalue,KEY);
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		log.info("取出解密后Subject:"+cookiesvalue);
+//		String[] cookiearr=cookiesvalue.split("\\|");
+//		System.out.println("cookieValues.length："+cookiearr.length);
+//		if(cookiearr.length!=3)
+//		{
+//			System.out.println("进入here");
+//			return "redirect:"+LOGIN_NAME;
+//		}
+//		
+//		long validTimeInCookie = new Long(cookiearr[1]);
+//		System.out.println("validTimeInCookie："+validTimeInCookie);
+//		System.out.println("currentTimeMillis:"+System.currentTimeMillis());
+//		if(validTimeInCookie < System.currentTimeMillis()){
+//			Cookie cookie=new Cookie("Subject",null);
+//			cookie.setMaxAge(0);
+//			cookie.setPath("/Manager/"); 
+//			response.addCookie(cookie);
+//			return "redirect:"+LOGIN_NAME;		
+//		}
+		
+		
+//		SysSystemInfo systeminfo=this.systemInfoService.selectByPrimaryKey(1);		
+//		
+//		model.addAttribute("sysinfo", systeminfo);		
+//		return "Manager/right";	
+		return "forward:/Manager/Module/FrameWork/SystemMaintenance/SystemConfig/right";
 	}
 	
-	@RequestMapping(value="/loginfailed", method = RequestMethod.GET)
-	public String loginerror(ModelMap model) {
- 
-		model.addAttribute("error", "true");
-		return "login";
- 
-	}
-	@RequestMapping(value="/accessDenied", method = RequestMethod.GET)
-	public String logidnerror(ModelMap model) {
-	  return "accessDenied"; 
-	}
 	
-	@RequestMapping(value="/sessionTimeout", method = RequestMethod.GET)
-	public String logidsnerror(ModelMap model) {
-	  return "sessionTimeout"; 
-	}
-	
-//	@RequestMapping(value="/logout", method = RequestMethod.GET)
-//	public String logout(ModelMap model) {
-// 
-//		return "login";
-// 
-//	}
-
-	/**
-	 * 初始页
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value={"/Manager/first"},method=GET)
-	public String sysmanagerfirst(			
-			ModelMap modelMap) 
-	{
-		return "Manager/first";
-	}
-	/**
-	 * 系统管理
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value={"/Manager/index"},method=GET)
-	public String sysmanager(			
-			ModelMap modelMap) 
-	{
-		return "Manager/index";
-	}
-	/**
-	 * 采集状态
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping(value={"/Manager/crawl"},method=GET)
-	public String sysmanagercrawl(			
-			ModelMap modelMap) 
-	{
-		return "Manager/crawl";
-	}
-
 }

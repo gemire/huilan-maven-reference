@@ -20,11 +20,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import com.hedgehog.outletss.Utils.EncryptUtil;
+import com.hedgehog.outletss.Utils.QueryPara;
 import com.hedgehog.outletss.domain.SysUser;
 import com.hedgehog.outletss.service.MyUserDetailsService;
 
 @Controller
-@RequestMapping("/Manager/Module/FrameWork/SystemMaintenance/UserManager")
+@RequestMapping("/Manager/Module/FrameWork/SystemApp/UserManager")
 public class UserManagerController {
 	private static final Log log = LogFactory.getLog(UserManagerController.class);
 	private MyUserDetailsService myUserDetailsService;
@@ -34,10 +35,21 @@ public class UserManagerController {
 	}
 
 	@RequestMapping(value={"/List"},method=RequestMethod.GET)
-	 public String bjksdjkadfkfd(ModelMap modelMap)
+	 public String bjksdjkadfkfd(
+			 @RequestParam(value="page", defaultValue="1") int page,
+		        @RequestParam(value="perPage", defaultValue="30") int perPage,	
+			 ModelMap modelMap)
 	 {	
-		List<SysUser> list=this.myUserDetailsService.selectAllRecord();
-		modelMap.addAttribute("list", list);
+//		List<SysUser> list=this.myUserDetailsService.selectAllRecord();
+//		modelMap.put("userlist", list);
+		//modelMap.addAttribute("list", list);
+		QueryPara<SysUser> qp=new QueryPara<SysUser>();
+		qp.setClazz(SysUser.class);		
+		qp.setPagesize(perPage);
+		qp.setPageNo(page);
+		
+		modelMap.put("userlist", this.myUserDetailsService.selectRecordForPage(qp));
+		modelMap.put("QueryPara", qp);	
 		return "UserManager/List";
 	 }
 	@RequestMapping(value={"/List"},method=RequestMethod.GET,params="cmd=new")
@@ -79,11 +91,11 @@ public class UserManagerController {
 	
 	@RequestMapping(value={"/List"},method=RequestMethod.GET,params="cmd=edit")
 	public String Manager(			
-			@RequestParam(value="IDX") String userId,		
+			@RequestParam(value="IDX") int userId,		
 			ModelMap modelMap) 
 	{
 		
-		
+		System.out.println("进入编辑页面");
 		SysUser user=this.myUserDetailsService.selectByPrimaryKey(userId);
 		modelMap.addAttribute("user", user);
 		
@@ -91,7 +103,7 @@ public class UserManagerController {
 	}
 	@RequestMapping(value={"/List"},method=RequestMethod.POST,params="cmd=edit")
 	public String Managerpost(			
-			@RequestParam(value="IDX") String userId,
+			@RequestParam(value="IDX") int userId,
 			@ModelAttribute("user") @Valid SysUser user,
 			BindingResult result,
 			RedirectAttributes redirectAttributes,

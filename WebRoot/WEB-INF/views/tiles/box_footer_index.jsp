@@ -5,7 +5,7 @@
  <div id="box_footer">
   <!-- 奥特莱斯联盟 -->
   <div id="box_alliance">
-   <div class="title_01"><a href="alliance.html"><img src="${ctx}/images/title_06.gif" alt="奥特莱斯联盟" border="0" /></a></div>
+   <div class="title_01"><a href="${ctx}/alliance" target="_blank"><img src="${ctx}/images/title_06.gif" alt="奥特莱斯联盟" border="0" /></a></div>
    <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
      <td width="540" ><div id="box_flash">
@@ -35,7 +35,7 @@
         </li>
        </ul>
      </div></td>
-     <td align="center"><a href="inchina.html"><img src="${ctx}/images/maps_01.jpg" alt="联盟地图" width="242" height="189" border="0" /></a></td>
+     <td align="center"><a href="${ctx}/inchina" target="_blank"><img src="${ctx}/images/maps_01.jpg" alt="联盟地图" width="242" height="189" border="0" /></a></td>
     </tr>
    </table>
   </div>

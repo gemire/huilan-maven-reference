@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 
 /**
  *        @hibernate.class
- *         table="sys_event"
+ *         table="sys_Event"
  *     
  */
 public class SysEvent  implements java.io.Serializable {
@@ -19,7 +19,7 @@ public class SysEvent  implements java.io.Serializable {
  *             column="EventID"
  *         
      */
-     private String eventId;
+     private Integer eventId;
      /**
       *            @hibernate.property
  *             column="E_U_LoginName"
@@ -33,7 +33,7 @@ public class SysEvent  implements java.io.Serializable {
  *             length="40"
  *         
      */
-     private String euserId;
+     private Integer euserId;
      /**
       *            @hibernate.property
  *             column="E_DateTime"
@@ -48,7 +48,7 @@ public class SysEvent  implements java.io.Serializable {
  *             length="40"
  *         
      */
-     private String eapplicationId;
+     private Integer eapplicationId;
      /**
       *            @hibernate.property
  *             column="E_A_AppName"
@@ -100,29 +100,9 @@ public class SysEvent  implements java.io.Serializable {
      */
      private String erecord;
 
-    public SysEvent() {
-    }
-
+    
 	
-    public SysEvent(String eventId, Timestamp edateTime, byte etype) {
-        this.eventId = eventId;
-        this.edateTime = edateTime;
-        this.etype = etype;
-    }
-    public SysEvent(String eventId, String euLoginName, String euserId, Timestamp edateTime, String eapplicationId, String eaAppName, String emName, String emPageCode, String efrom, byte etype, String eip, String erecord) {
-       this.eventId = eventId;
-       this.euLoginName = euLoginName;
-       this.euserId = euserId;
-       this.edateTime = edateTime;
-       this.eapplicationId = eapplicationId;
-       this.eaAppName = eaAppName;
-       this.emName = emName;
-       this.emPageCode = emPageCode;
-       this.efrom = efrom;
-       this.etype = etype;
-       this.eip = eip;
-       this.erecord = erecord;
-    }
+    
    
     /**       
      *      *            @hibernate.id
@@ -131,11 +111,11 @@ public class SysEvent  implements java.io.Serializable {
      *             column="EventID"
      *         
      */
-    public String getEventId() {
+    public Integer getEventId() {
         return this.eventId;
     }
     
-    public void setEventId(String eventId) {
+    public void setEventId(Integer eventId) {
         this.eventId = eventId;
     }
     /**       
@@ -157,11 +137,11 @@ public class SysEvent  implements java.io.Serializable {
      *             length="40"
      *         
      */
-    public String getEuserId() {
+    public Integer getEuserId() {
         return this.euserId;
     }
     
-    public void setEuserId(String euserId) {
+    public void setEuserId(Integer euserId) {
         this.euserId = euserId;
     }
     /**       
@@ -184,11 +164,11 @@ public class SysEvent  implements java.io.Serializable {
      *             length="40"
      *         
      */
-    public String getEapplicationId() {
+    public Integer getEapplicationId() {
         return this.eapplicationId;
     }
     
-    public void setEapplicationId(String eapplicationId) {
+    public void setEapplicationId(Integer eapplicationId) {
         this.eapplicationId = eapplicationId;
     }
     /**       

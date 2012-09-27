@@ -7,28 +7,41 @@ import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode
 import static org.apache.commons.lang.builder.ToStringBuilder.reflectionToString;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  *        @hibernate.class
- *         table="sys_user"
+ *         table="sys_User"
  *     
  */
 @Entity
-@Table(name="sys_user")
+@Table(name="sys_User")
 @org.hibernate.annotations.Proxy(lazy = false)
 public class SysUser  implements java.io.Serializable ,UserDetails{
+	
+	private static final Log log = LogFactory.getLog(SysUser.class);
 	
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +53,7 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
  *             column="UserID"
  *         
      */
-     private String userId;
+     private Integer userId;
      /**
       *            @hibernate.property
  *             column="U_LoginName"
@@ -78,7 +91,7 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
  *             not-null="true"
  *         
      */
-     private String ugroupId;
+     private Integer ugroupId;
      /**
       *            @hibernate.property
  *             column="U_Email"
@@ -185,7 +198,7 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
  *             length="40"
  *         
      */
-     private String utitle;
+     private Integer utitle;
      /**
       *            @hibernate.property
  *             column="U_Extension"
@@ -235,6 +248,8 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
  *         
      */
      private byte[] uextendField;
+     
+     private List<SysRole> roles;
     
    
     /**       
@@ -244,15 +259,15 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
      *             column="UserID"
      *         
      */
+    
     @Id
- 	@Column(name = "UserID",length =40,unique=true, nullable=false)	
- 	@GeneratedValue(generator = "system-uuid")
- 	@GenericGenerator(name = "system-uuid", strategy = "uuid")
-    public String getUserId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "UserID",unique=true, nullable=false)
+    public Integer getUserId() {
         return this.userId;
     }
     
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
     /**       
@@ -320,12 +335,12 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
      *             not-null="true"
      *         
      */
-    @Column(name="U_GroupID",length=40)
-    public String getUgroupId() {
+    @Column(name="U_GroupID",length=10)
+    public Integer getUgroupId() {
         return this.ugroupId;
     }
     
-    public void setUgroupId(String ugroupId) {
+    public void setUgroupId(Integer ugroupId) {
         this.ugroupId = ugroupId;
     }
     /**       
@@ -532,12 +547,12 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
      *             length="40"
      *         
      */
-    @Column(name="U_Title",length=40)
-    public String getUtitle() {
+    @Column(name="U_Title",length=10)
+    public Integer getUtitle() {
         return this.utitle;
     }
     
-    public void setUtitle(String utitle) {
+    public void setUtitle(Integer utitle) {
         this.utitle = utitle;
     }
     /**       
@@ -638,6 +653,17 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
     public void setUextendField(byte[] uextendField) {
         this.uextendField = uextendField;
     }
+    @ManyToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+	@JoinTable(name="sys_UserRoles",
+				joinColumns={@JoinColumn(name="R_UserID")},
+				inverseJoinColumns={@JoinColumn(name="R_RoleID")})
+	public List<SysRole> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<SysRole> roles) {
+		this.roles = roles;
+	}
     /**
      * 实现UserDetails接口方法
      */
@@ -645,7 +671,16 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
     	@Transient
     	public Collection<? extends GrantedAuthority> getAuthorities() {
     		// TODO Auto-generated method stub
-    		return null;
+    		List<GrantedAuthority> grantedAuthorities=new ArrayList<GrantedAuthority>();
+    		for(SysRole role: roles)
+    		{
+    			//list.add(new GrantedAuthorityImpl(role.getName()));
+    			grantedAuthorities.add(new SimpleGrantedAuthority(role.getRroleName()));
+    			//log.info("sysuer:"+role.getRroleName());
+    		}
+    		//grantedAuthorities.toArray(new GrantedAuthority[roles.size()]);   
+
+    		return grantedAuthorities;
     	}
 
 
@@ -693,7 +728,8 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
     	@Transient
     	public boolean isEnabled() {
     		// TODO Auto-generated method stub
-    		return this.ustatus==0?true:false;		
+    		//return this.ustatus==0?true:false;	
+    		return true;
     	}
     	// plumbing
         @Override

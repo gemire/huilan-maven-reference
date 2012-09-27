@@ -6,11 +6,11 @@
     <div class="ny_title"><img src="${ctx}/images/ny_title-02.gif" alt="关于我们" width="220" height="50" /></div>
     <div class="ny_nav">
      <ul >
-      <li><a href="inchina.html" class="hover" >奥特莱斯在中国<br/>
+      <li><a href="${ctx}/inchina" class="hover">奥特莱斯在中国<br/>
        <span>In China</span></a></li>
-      <li><a href="alliance.html" >奥特莱斯联盟<br/>
+      <li><a href="${ctx}/alliance" >奥特莱斯联盟<br/>
        <span>Alliance</span></a></li>
-      <li><a href="brand.html" >战略合作品牌<br/>
+      <li><a href="${ctx}/brand" >战略合作品牌<br/>
        <span>Strategic co-brand</span></a></li>
      </ul>
     </div>

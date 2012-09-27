@@ -1,14 +1,39 @@
 package com.hedgehog.outletss.domain;
+
+import java.util.List;
+
+import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
+import static org.apache.commons.lang.builder.ToStringBuilder.reflectionToString;
+
+import java.sql.Timestamp;
+import java.util.Collection;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
 // Generated 2012-9-16 16:58:05 by Hibernate Tools 3.2.2.GA
+
+
 
 
 
 /**
  *        @hibernate.class
- *         table="sys_rolepermission"
+ *         table="sys_RolePermission"
  *     
  */
-public class SysRolepermission  implements java.io.Serializable {
+@Entity
+@Table(name="sys_RolePermission")
+@org.hibernate.annotations.Proxy(lazy = false)
+public class SysRolePermission  implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 
 
      /**
@@ -16,7 +41,7 @@ public class SysRolepermission  implements java.io.Serializable {
  *             generator-class="assigned"
  *         
      */
-     private SysRolepermissionPK comp_id;
+     //private SysRolepermissionPK comp_id;
      /**
       *            @hibernate.property
  *             column="PermissionID"
@@ -24,7 +49,29 @@ public class SysRolepermission  implements java.io.Serializable {
  *             not-null="true"
  *         
      */
-     private String permissionId;
+     private Integer permissionId;
+     /**
+      *                @hibernate.property
+ *                 column="P_RoleID"
+ *                 length="10"
+ *             
+     */
+	
+     private Integer proleId;
+     /**
+      *                @hibernate.property
+ *                 column="P_ApplicationID"
+ *                 length="10"
+ *             
+     */
+     private Integer papplicationId;
+     /**
+      *                @hibernate.property
+ *                 column="P_PageCode"
+ *                 length="20"
+ *             
+     */
+     private String ppageCode;
      /**
       *            @hibernate.property
  *             column="P_Value"
@@ -33,32 +80,9 @@ public class SysRolepermission  implements java.io.Serializable {
      */
      private Integer pvalue;
 
-    public SysRolepermission() {
-    }
-
-	
-    public SysRolepermission(SysRolepermissionPK comp_id, String permissionId) {
-        this.comp_id = comp_id;
-        this.permissionId = permissionId;
-    }
-    public SysRolepermission(SysRolepermissionPK comp_id, String permissionId, Integer pvalue) {
-       this.comp_id = comp_id;
-       this.permissionId = permissionId;
-       this.pvalue = pvalue;
-    }
+     private List<Integer>  arraystr;
    
-    /**       
-     *      *            @hibernate.id
-     *             generator-class="assigned"
-     *         
-     */
-    public SysRolepermissionPK getComp_id() {
-        return this.comp_id;
-    }
     
-    public void setComp_id(SysRolepermissionPK comp_id) {
-        this.comp_id = comp_id;
-    }
     /**       
      *      *            @hibernate.property
      *             column="PermissionID"
@@ -66,12 +90,58 @@ public class SysRolepermission  implements java.io.Serializable {
      *             not-null="true"
      *         
      */
-    public String getPermissionId() {
+     
+     @Id
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Column(name = "PermissionID",unique=true, nullable=false)
+    public Integer getPermissionId() {
         return this.permissionId;
     }
     
-    public void setPermissionId(String permissionId) {
+    public void setPermissionId(Integer permissionId) {
         this.permissionId = permissionId;
+    }
+    /**       
+     *      *                @hibernate.property
+     *                 column=""
+     *                 length="10"
+     *             
+     */
+    @Column(name="P_RoleID",nullable=false)
+    public Integer getProleId() {
+        return this.proleId;
+    }
+    
+    public void setProleId(Integer proleId) {
+        this.proleId = proleId;
+    }
+    /**       
+     *      *                @hibernate.property
+     *                 column="P_ApplicationID"
+     *                 length="10"
+     *             
+     */
+    @Column(name="P_ApplicationID",nullable=false)
+    public Integer getPapplicationId() {
+        return this.papplicationId;
+    }
+    
+    public void setPapplicationId(Integer papplicationId) {
+        this.papplicationId = papplicationId;
+    }
+    /**       
+     *      *                @hibernate.property
+     *                 column="P_PageCode"
+     *                 length="20"
+     *             
+     */
+    @Column(name="P_PageCode",length=20,nullable=false)
+    public String getPpageCode() {
+        return this.ppageCode;
+    }
+    
+    public void setPpageCode(String ppageCode) {
+        this.ppageCode = ppageCode;
     }
     /**       
      *      *            @hibernate.property
@@ -79,6 +149,7 @@ public class SysRolepermission  implements java.io.Serializable {
      *             length="10"
      *         
      */
+    @Column(name="P_Value",length=10)
     public Integer getPvalue() {
         return this.pvalue;
     }
@@ -86,8 +157,30 @@ public class SysRolepermission  implements java.io.Serializable {
     public void setPvalue(Integer pvalue) {
         this.pvalue = pvalue;
     }
+    @Transient    
+    public List<Integer> getArraystr() {
+		return arraystr;
+	}
 
+	public void setArraystr(List<Integer> arraystr) {
+		this.arraystr = arraystr;
+	}
 
+	// plumbing
+    @Override
+    public boolean equals(Object obj) {
+      return reflectionEquals(this, obj);
+    }
+    
+    @Override
+    public int hashCode() {
+      return reflectionHashCode(this);
+    }
+    
+    @Override
+    public String toString() {
+      return reflectionToString(this);
+    }
 
 
 }
