@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.hedgehog.domain.*"%>
-<%@page import="com.hedgehog.Utils.QueryPara"%>
+<%@page import="com.hedgehog.outletss.domain.*"%>
+<%@page import="com.hedgehog.outletss.Utils.QueryPara"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
@@ -56,7 +56,7 @@
             <div>
          <%
   List<SysUser> list=(List<SysUser>)request.getAttribute("userlist");  
-  QueryPara<SysUser> qp=(QueryPara<SysUser>)request.getAttribute("QueryPara");  
+ QueryPara<SysUser> qp=(QueryPara<SysUser>)request.getAttribute("QueryPara");  
   int pagecount=qp.getPagecount();
   int pageNo=qp.getPageNo();  
   int pagesize=qp.getPagesize();
@@ -77,7 +77,7 @@
   int seq=0;
   while(it.hasNext())
   {
-  seq++;
+    seq++;
     sysUser=(SysUser)it.next();    
     %>
     <tr class="<%=seq%2==1?"row":"row1"%>" align="center" style="height:28px;">
@@ -85,7 +85,7 @@
 			<td><%=sysUser.getUloginName()%></td>
 			<td><%=sysUser.getUcname()%></td>
 			<td><%=strArray[sysUser.getUstatus()]%></td>
-			<td><a href="?cmd=edit&id=<%=sysUser.getUserId()%>">编辑</a>||<a href="JavaScript:DelData('?cmd=del&id=<%=sysUser.getUserId()%>')">删除</a></td>
+			<td><a href="?cmd=edit&IDX=<%=sysUser.getUserId()%>">编辑</a>||<a href="JavaScript:DelData('?cmd=del&IDX=<%=sysUser.getUserId()%>')">删除</a></td>
 		</tr>
     <%
     
@@ -96,7 +96,6 @@
   }
    %>
 </div>
-            
             
 <!-- AspNetPager V6.0.0 for VS2005  Copyright:2003-2006 Webdiyer (www.webdiyer.com) -->
 <div id="ctl00_PageBody_Pager">

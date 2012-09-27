@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.hedgehog.domain.*"%>
-<%@page import="com.hedgehog.Utils.QueryPara"%>
+<%@page import="com.hedgehog.outletss.domain.*"%>
+<%@page import="com.hedgehog.outletss.Utils.QueryPara"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>

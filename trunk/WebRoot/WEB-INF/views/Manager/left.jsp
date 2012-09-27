@@ -1,8 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page import="com.hedgehog.domain.SysApplication"%>
-<%@page import="com.hedgehog.domain.SysModule"%>
+<%@page import="com.hedgehog.outletss.domain.SysApplication"%>
+<%@page import="com.hedgehog.outletss.domain.SysModule"%>
 <%@page import="java.util.List"%> 
 <%
 String path = request.getContextPath();
@@ -109,7 +109,7 @@ TD {FONT-SIZE: 12px; FONT-FAMILY: "Verdana", "Arial", "细明体", "sans-serif"}
 					
 					<tr>
 
-                                            <td class="table_none" onclick="javascript:NowShow('<%="M_"+subm.getModuleId()%>','${ctx}<%=subm.getMdirectory()%>');" onmousemove="javascript:TDOverORIn('<%="M_"+subm.getModuleId()%>');" onmouseout="javascript:TDOverOROut('<%="M_"+subm.getModuleId()%>');" id="<%="M_"+subm.getModuleId()%>">
+                                            <td class="table_none" onclick="javascript:NowShow('<%="M_"+subm.getModuleId()%>','${ctx}/<%=subm.getMdirectory()%>');" onmousemove="javascript:TDOverORIn('<%="M_"+subm.getModuleId()%>');" onmouseout="javascript:TDOverOROut('<%="M_"+subm.getModuleId()%>');" id="<%="M_"+subm.getModuleId()%>">
 
                                                 <img height='7' hspace='5' src='${ctx}/Manager/images/Menu/arrow.gif' width='5' align="bottom">
 

@@ -19,7 +19,7 @@ public class BizInfo  implements java.io.Serializable {
 *             column="InfoID"
 *         
   */
-  private String infoId;
+  private Integer infoId;
   /**
    *            @hibernate.property
 *             column="Info_domain"
@@ -56,16 +56,7 @@ public class BizInfo  implements java.io.Serializable {
   */
   private Timestamp infoUpdatetime;
 
- public BizInfo() {
- }
-
- public BizInfo(String infoDomain, String infoKey, String infoValue, String infoProperties, Timestamp infoUpdatetime) {
-    this.infoDomain = infoDomain;
-    this.infoKey = infoKey;
-    this.infoValue = infoValue;
-    this.infoProperties = infoProperties;
-    this.infoUpdatetime = infoUpdatetime;
- }
+ 
 
  /**       
   *      *            @hibernate.id
@@ -74,11 +65,11 @@ public class BizInfo  implements java.io.Serializable {
   *             column="InfoID"
   *         
   */
- public String getInfoId() {
+ public Integer getInfoId() {
      return this.infoId;
  }
  
- public void setInfoId(String infoId) {
+ public void setInfoId(Integer infoId) {
      this.infoId = infoId;
  }
  /**       

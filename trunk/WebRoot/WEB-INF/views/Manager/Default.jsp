@@ -79,7 +79,7 @@ p{
             <td id="frmTitle" name="frmTitle" nowrap="nowrap" valign="middle" align="center"
                 width="198" style="border-right: 1px solid #000000">
                 <iframe name="BoardTitle" style="height: 100%; visibility: inherit; width: 198; z-index: 2"
-                    scrolling="auto" frameborder="0" src="Manager/left.html"></iframe>
+                    scrolling="auto" frameborder="0" src="${ctx}/Manager/left.html"></iframe>
             </td>
             <td style="width: 10pt" bgcolor="#7898A8" width="10" title="关闭/打开左栏" class="navPoint">
                 <table border="0" cellpadding="0" cellspacing="0" width="11" height="100%" align="right">
@@ -93,7 +93,7 @@ p{
             </td>
             <td style="width: 100%">
                 <iframe id="mainFrame" name="mainFrame" style="height: 100%; visibility: inherit;
-                    width: 100%; z-index: 1" scrolling="auto" frameborder="0" src="Manager/right.html"></iframe>
+                    width: 100%; z-index: 1" scrolling="auto" frameborder="0" src="${ctx}/Manager/right.html"></iframe>
             </td>
         </tr>
         <%

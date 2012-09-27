@@ -1,14 +1,45 @@
 package com.hedgehog.outletss.domain;
+
+import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
+import static org.apache.commons.lang.builder.ToStringBuilder.reflectionToString;
+
+import java.sql.Timestamp;
+import java.util.Collection;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hibernate.annotations.GenericGenerator;
+
 // Generated 2012-9-16 16:58:05 by Hibernate Tools 3.2.2.GA
 
 
 
 /**
  *        @hibernate.class
- *         table="sys_roles"
+ *         table="sys_Roles"
  *     
  */
+@Entity
+@Table(name="sys_Roles")
+@org.hibernate.annotations.Proxy(lazy = false)
 public class SysRole  implements java.io.Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
 
      /**
@@ -18,7 +49,7 @@ public class SysRole  implements java.io.Serializable {
  *             column="RoleID"
  *         
      */
-     private String roleId;
+     private Integer roleId;
      /**
       *            @hibernate.property
  *             column="R_UserID"
@@ -26,7 +57,7 @@ public class SysRole  implements java.io.Serializable {
  *             not-null="true"
  *         
      */
-     private String ruserId;
+     private Integer ruserId;
      /**
       *            @hibernate.property
  *             column="R_RoleName"
@@ -50,22 +81,9 @@ public class SysRole  implements java.io.Serializable {
      */
      private String rroleCode;
 
-    public SysRole() {
-    }
-
-	
-    public SysRole(String roleId, String ruserId, String rroleName) {
-        this.roleId = roleId;
-        this.ruserId = ruserId;
-        this.rroleName = rroleName;
-    }
-    public SysRole(String roleId, String ruserId, String rroleName, String rdescription, String rroleCode) {
-       this.roleId = roleId;
-       this.ruserId = ruserId;
-       this.rroleName = rroleName;
-       this.rdescription = rdescription;
-       this.rroleCode = rroleCode;
-    }
+     private SysUser rsysUser;
+     
+     private List<SysUser> users;
    
     /**       
      *      *            @hibernate.id
@@ -74,11 +92,15 @@ public class SysRole  implements java.io.Serializable {
      *             column="RoleID"
      *         
      */
-    public String getRoleId() {
+   
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "RoleID",unique=true, nullable=false)
+    public Integer getRoleId() {
         return this.roleId;
     }
     
-    public void setRoleId(String roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
     /**       
@@ -88,11 +110,12 @@ public class SysRole  implements java.io.Serializable {
      *             not-null="true"
      *         
      */
-    public String getRuserId() {
+    @Column(name="R_UserID",length=10,nullable=false)
+    public Integer getRuserId() {
         return this.ruserId;
     }
     
-    public void setRuserId(String ruserId) {
+    public void setRuserId(Integer ruserId) {
         this.ruserId = ruserId;
     }
     /**       
@@ -102,6 +125,7 @@ public class SysRole  implements java.io.Serializable {
      *             not-null="true"
      *         
      */
+    @Column(name="R_RoleName",length=50,nullable=false)
     public String getRroleName() {
         return this.rroleName;
     }
@@ -115,6 +139,7 @@ public class SysRole  implements java.io.Serializable {
      *             length="255"
      *         
      */
+    @Column(name="R_Description",length=255)
     public String getRdescription() {
         return this.rdescription;
     }
@@ -128,6 +153,11 @@ public class SysRole  implements java.io.Serializable {
      *             length="20"
      *         
      */
+    /**
+     * soyumusic版本没有此项
+     * @return
+     */
+    @Column(name="R_RoleCode",length=20)
     public String getRroleCode() {
         return this.rroleCode;
     }
@@ -135,9 +165,41 @@ public class SysRole  implements java.io.Serializable {
     public void setRroleCode(String rroleCode) {
         this.rroleCode = rroleCode;
     }
+    
+    @ManyToOne(cascade={CascadeType.ALL},fetch = FetchType.LAZY)
+    @JoinColumn(name="R_UserID",nullable=false,insertable=false,updatable=false)
+    public SysUser getRsysUser() {
+		return rsysUser;
+	}
 
+	public void setRsysUser(SysUser rsysUser) {
+		this.rsysUser = rsysUser;
+	}
+	
+    @ManyToMany(mappedBy="roles")
+    public List<SysUser> getUsers() {
+		return users;
+	}
 
-
+	public void setUsers(List<SysUser> users) {
+		this.users = users;
+	}
+    
+ // plumbing
+    @Override
+    public boolean equals(Object obj) {
+      return reflectionEquals(this, obj);
+    }
+    
+    @Override
+    public int hashCode() {
+      return reflectionHashCode(this);
+    }
+    
+    @Override
+    public String toString() {
+      return reflectionToString(this);
+    }
 
 }
 

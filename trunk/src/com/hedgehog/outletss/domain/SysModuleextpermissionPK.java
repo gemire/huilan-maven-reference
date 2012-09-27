@@ -15,7 +15,7 @@ public class SysModuleextpermissionPK  implements java.io.Serializable {
  *                 length="40"
  *             
      */
-     private String moduleId;
+     private Integer moduleId;
      /**
       *                @hibernate.property
  *                 column="PermissionValue"
@@ -27,7 +27,7 @@ public class SysModuleextpermissionPK  implements java.io.Serializable {
     public SysModuleextpermissionPK() {
     }
 
-    public SysModuleextpermissionPK(String moduleId, Integer permissionValue) {
+    public SysModuleextpermissionPK(Integer moduleId, Integer permissionValue) {
        this.moduleId = moduleId;
        this.permissionValue = permissionValue;
     }
@@ -38,11 +38,11 @@ public class SysModuleextpermissionPK  implements java.io.Serializable {
      *                 length="40"
      *             
      */
-    public String getModuleId() {
+    public Integer getModuleId() {
         return this.moduleId;
     }
     
-    public void setModuleId(String moduleId) {
+    public void setModuleId(Integer moduleId) {
         this.moduleId = moduleId;
     }
     /**       

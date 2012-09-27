@@ -15,14 +15,14 @@ public class SysRolepermissionPK  implements java.io.Serializable {
  *                 length="40"
  *             
      */
-     private String proleId;
+     private Integer proleId;
      /**
       *                @hibernate.property
  *                 column="P_ApplicationID"
  *                 length="40"
  *             
      */
-     private String papplicationId;
+     private Integer papplicationId;
      /**
       *                @hibernate.property
  *                 column="P_PageCode"
@@ -34,7 +34,7 @@ public class SysRolepermissionPK  implements java.io.Serializable {
     public SysRolepermissionPK() {
     }
 
-    public SysRolepermissionPK(String proleId, String papplicationId, String ppageCode) {
+    public SysRolepermissionPK(Integer proleId, Integer papplicationId, String ppageCode) {
        this.proleId = proleId;
        this.papplicationId = papplicationId;
        this.ppageCode = ppageCode;
@@ -46,11 +46,11 @@ public class SysRolepermissionPK  implements java.io.Serializable {
      *                 length="40"
      *             
      */
-    public String getProleId() {
+    public Integer getProleId() {
         return this.proleId;
     }
     
-    public void setProleId(String proleId) {
+    public void setProleId(Integer proleId) {
         this.proleId = proleId;
     }
     /**       
@@ -59,11 +59,11 @@ public class SysRolepermissionPK  implements java.io.Serializable {
      *                 length="40"
      *             
      */
-    public String getPapplicationId() {
+    public Integer getPapplicationId() {
         return this.papplicationId;
     }
     
-    public void setPapplicationId(String papplicationId) {
+    public void setPapplicationId(Integer papplicationId) {
         this.papplicationId = papplicationId;
     }
     /**       

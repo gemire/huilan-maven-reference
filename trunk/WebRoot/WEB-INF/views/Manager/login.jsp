@@ -5,8 +5,7 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-String FrameName=(String)request.getAttribute("FrameName");
-String FrameNameVer=(String)request.getAttribute("FrameNameVer");
+
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -14,7 +13,7 @@ String FrameNameVer=(String)request.getAttribute("FrameNameVer");
   <head>
     <base href="<%=basePath%>">
     
-    <title><%=FrameName %></title>
+    <title>${systeminfo.sname}</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -54,11 +53,11 @@ $j(function(){
                         <td style="background-image: url(${ctx}/Manager/images/top-gray.gif); background-repeat: no-repeat;
                             background-position: right top">
                             <b>
-                                <%=FrameName %>
+                                ${systeminfo.sname}
                             </b>
                             <br />
                             <font size="2" color="#999999" face="Verdana, Arial, Helvetica, sans-serif">
-                                <%=FrameNameVer %>
+                                ${systeminfo.sversion}
                             </font>
                         </td>
                     </tr>

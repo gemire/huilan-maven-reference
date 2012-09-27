@@ -34,7 +34,7 @@
       <div class="ny_news_list">
        <ul >
         <li class="list">
-         <h1><a href="news_detail.html" > 澳洲知名大学校长受聘我司独立董事澳洲知名大学校长受聘我司独立董事澳洲知名大学校长受聘我司独立董事</a></h1>
+         <h1><a href="${ctx}/news/fshfg" target="_blank"> 澳洲知名大学校长受聘我司独立董事澳洲知名大学校长受聘我司独立董事澳洲知名大学校长受聘我司独立董事</a></h1>
          <div class="more"><img src="${ctx}/images/more_01.gif" alt="更多" /></div>
         </li>
         <li class="clearBoth"></li>

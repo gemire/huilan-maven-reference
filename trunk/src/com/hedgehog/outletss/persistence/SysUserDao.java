@@ -6,6 +6,7 @@ package com.hedgehog.outletss.persistence;
 import java.io.Serializable;
 import java.util.List;
 
+import com.hedgehog.outletss.Utils.QueryPara;
 import com.hedgehog.outletss.domain.SysUser;
 
 /**
@@ -14,7 +15,7 @@ import com.hedgehog.outletss.domain.SysUser;
  */
 public interface SysUserDao {
 	public SysUser findUserByName(String name);
-	
+	List<SysUser> selectRecordForPage(QueryPara<SysUser> qp);
 	List<SysUser> selectAllRecord();
 	SysUser selectByPrimaryKey(Serializable userId);
 	void saveOrUpdate(SysUser record);

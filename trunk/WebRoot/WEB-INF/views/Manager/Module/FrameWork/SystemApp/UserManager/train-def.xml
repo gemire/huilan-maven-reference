@@ -9,7 +9,7 @@
                    value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/UserManager/List.jsp" />
    </definition>
    <!--<end id="spittleListTileDef"/>-->
-   <definition name="UserManager/UserManager" extends="maintemplate">
+   <definition name="UserManager/Manager" extends="maintemplate">
     <put-attribute name="content" 
                    value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/UserManager/UserManager.jsp" />
    </definition>

@@ -15,19 +15,19 @@ public class SysRoleapplicationPK  implements java.io.Serializable {
  *                 length="40"
  *             
      */
-     private String aroleId;
+     private Integer aroleId;
      /**
       *                @hibernate.property
  *                 column="A_ApplicationID"
  *                 length="40"
  *             
      */
-     private String aapplicationId;
+     private Integer aapplicationId;
 
     public SysRoleapplicationPK() {
     }
 
-    public SysRoleapplicationPK(String aroleId, String aapplicationId) {
+    public SysRoleapplicationPK(Integer aroleId, Integer aapplicationId) {
        this.aroleId = aroleId;
        this.aapplicationId = aapplicationId;
     }
@@ -38,11 +38,11 @@ public class SysRoleapplicationPK  implements java.io.Serializable {
      *                 length="40"
      *             
      */
-    public String getAroleId() {
+    public Integer getAroleId() {
         return this.aroleId;
     }
     
-    public void setAroleId(String aroleId) {
+    public void setAroleId(Integer aroleId) {
         this.aroleId = aroleId;
     }
     /**       
@@ -51,11 +51,11 @@ public class SysRoleapplicationPK  implements java.io.Serializable {
      *                 length="40"
      *             
      */
-    public String getAapplicationId() {
+    public Integer getAapplicationId() {
         return this.aapplicationId;
     }
     
-    public void setAapplicationId(String aapplicationId) {
+    public void setAapplicationId(Integer aapplicationId) {
         this.aapplicationId = aapplicationId;
     }
 

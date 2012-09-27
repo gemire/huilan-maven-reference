@@ -5,6 +5,7 @@
 <tiles-definitions>
    <definition name="home" template="/WEB-INF/views/home.jsp"></definition>
    <definition name="news" template="/WEB-INF/views/news.jsp"></definition>
+   <!-- 模板页 -->
    <definition name="template" template="/WEB-INF/views/tiles/template.jsp">  
      <put-attribute name="title" value="default title"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_index.jsp"/>        
@@ -12,15 +13,17 @@
         <put-attribute name="box_main" value="/WEB-INF/views/tiles/box_main_index.jsp"/>
         <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_index.jsp"/>
    </definition>
+   <!-- 首页 -->
    <definition name="home" extends="template">  
-        <put-attribute name="title" value="奥特莱斯网首页11"/>     
+        <put-attribute name="title" value="奥特莱斯网首页"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_index.jsp"/>        
         <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_index.jsp"/>
         <put-attribute name="box_main" value="/WEB-INF/views/tiles/box_main_index.jsp"/>
         <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_index.jsp"/>
       </definition>
+      <!-- 关于奥特莱斯 -->
       <definition name="about" extends="template">  
-        <put-attribute name="title" value="关于奥特莱斯22"/>     
+        <put-attribute name="title" value="关于奥特莱斯"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
         <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_about.jsp"/>
         <put-attribute name="box_main">
@@ -31,8 +34,23 @@
         </put-attribute>        
         <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_about.jsp"/>
       </definition>
+      <!-- 奥特莱斯联盟简介 -->
+      <definition name="union" extends="template">  
+        <put-attribute name="title" value="奥特莱斯联盟简介"/>     
+        <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
+        <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_about.jsp"/>
+        <put-attribute name="box_main">
+          <definition template="/WEB-INF/views/tiles/box_main_about.jsp">
+            <put-attribute name="box_left" value="/WEB-INF/views/tiles/box_main/box_left_union.jsp"/>
+            <put-attribute name="box_right" value="/WEB-INF/views/tiles/box_main/box_right_union.jsp"/>
+          </definition>
+        </put-attribute>        
+        <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_about.jsp"/>
+      </definition>
+      
+      <!-- 奥特莱斯在中国  -->
       <definition name="inchina" extends="template">  
-        <put-attribute name="title" value="奥特莱斯在中国22"/>     
+        <put-attribute name="title" value="奥特莱斯在中国"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
         <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_inchina.jsp"/>
         <put-attribute name="box_main">
@@ -43,6 +61,46 @@
         </put-attribute>        
         <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_about.jsp"/>
       </definition>
+      <!-- 奥特莱斯联盟 【奥特莱斯特卖场】-->
+       <definition name="alliance" extends="template">  
+        <put-attribute name="title" value="奥特莱斯联盟"/>     
+        <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
+        <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_inchina.jsp"/>
+        <put-attribute name="box_main">
+          <definition template="/WEB-INF/views/tiles/box_main_about.jsp">
+            <put-attribute name="box_left" value="/WEB-INF/views/tiles/box_main/box_left_alliance.jsp"/>
+            <put-attribute name="box_right" value="/WEB-INF/views/tiles/box_main/box_right_alliance.jsp"/>
+          </definition>
+        </put-attribute>        
+        <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_about.jsp"/>
+      </definition>
+       <!-- 奥特莱斯联盟 【奥特莱斯特卖场详情】-->
+       <definition name="alliance_detail" extends="template">  
+        <put-attribute name="title" value="奥特莱斯联盟"/>     
+        <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
+        <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_inchina.jsp"/>
+        <put-attribute name="box_main">
+          <definition template="/WEB-INF/views/tiles/box_main_about.jsp">
+            <put-attribute name="box_left" value="/WEB-INF/views/tiles/box_main/box_left_alliance.jsp"/>
+            <put-attribute name="box_right" value="/WEB-INF/views/tiles/box_main/box_right_alliance_detail.jsp"/>
+          </definition>
+        </put-attribute>        
+        <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_about.jsp"/>
+      </definition>
+      <!-- 战略合作伙伴 -->
+       <definition name="brand" extends="template">  
+        <put-attribute name="title" value="战略合作伙伴"/>     
+        <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
+        <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_inchina.jsp"/>
+        <put-attribute name="box_main">
+          <definition template="/WEB-INF/views/tiles/box_main_about.jsp">
+            <put-attribute name="box_left" value="/WEB-INF/views/tiles/box_main/box_left_brand.jsp"/>
+            <put-attribute name="box_right" value="/WEB-INF/views/tiles/box_main/box_right_brand.jsp"/>
+          </definition>
+        </put-attribute>        
+        <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_about.jsp"/>
+      </definition>
+      <!-- 业态研究 -->
       <definition name="research" extends="template">  
         <put-attribute name="title" value="业态研究"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
@@ -55,6 +113,20 @@
         </put-attribute>        
         <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_about.jsp"/>
       </definition>
+      <!-- 业态研究详细 -->
+      <definition name="research_detail" extends="template">  
+        <put-attribute name="title" value="业态研究"/>     
+        <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
+        <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_research.jsp"/>
+        <put-attribute name="box_main">
+          <definition template="/WEB-INF/views/tiles/box_main_about.jsp">
+            <put-attribute name="box_left" value="/WEB-INF/views/tiles/box_main/box_left_research_detail.jsp"/>
+            <put-attribute name="box_right" value="/WEB-INF/views/tiles/box_main/box_right_research_detail.jsp"/>
+          </definition>
+        </put-attribute>        
+        <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_about.jsp"/>
+      </definition>
+      <!-- 新闻中心 -->
       <definition name="news" extends="template">  
         <put-attribute name="title" value="新闻中心"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
@@ -65,8 +137,22 @@
             <put-attribute name="box_right" value="/WEB-INF/views/tiles/box_main/box_right_news.jsp"/>
           </definition>
         </put-attribute>        
+        <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_news.jsp"/>
+      </definition>
+      <!-- 新闻中心详细 -->
+      <definition name="news_detail" extends="template">  
+        <put-attribute name="title" value="新闻中心"/>     
+        <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
+        <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_news.jsp"/>
+        <put-attribute name="box_main">
+          <definition template="/WEB-INF/views/tiles/box_main_about.jsp">
+            <put-attribute name="box_left" value="/WEB-INF/views/tiles/box_main/box_left_research_detail.jsp"/>
+            <put-attribute name="box_right" value="/WEB-INF/views/tiles/box_main/box_right_news_detail.jsp"/>
+          </definition>
+        </put-attribute>        
         <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_about.jsp"/>
       </definition>
+      <!-- 联系我们 -->
       <definition name="conter" extends="template">  
         <put-attribute name="title" value="联系我们"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
@@ -78,7 +164,5 @@
           </definition>
         </put-attribute>        
         <put-attribute name="box_footer" value="/WEB-INF/views/tiles/box_footer_about.jsp"/>
-      </definition>
-      
+      </definition>      
 </tiles-definitions>
-

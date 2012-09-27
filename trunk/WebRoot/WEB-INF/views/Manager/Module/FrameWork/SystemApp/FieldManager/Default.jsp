@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@page import="com.hedgehog.domain.*"%>
-<%@page import="com.hedgehog.Utils.QueryPara"%>
+<%@page import="com.hedgehog.outletss.domain.*"%>
+<%@page import="com.hedgehog.outletss.Utils.QueryPara"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
@@ -12,7 +12,7 @@
               </tr>
               <tr>
                 <td height='27px' class='menubar_function_text'>目前操作功能：应用字段列表</td>
-                <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='FieldvalueManagerForm?cmd=new';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/new.gif">&nbsp;新增应用字段</td></tr></table></td>
+                <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='FieldValueManagerForm?cmd=new';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/new.gif">&nbsp;新增应用字段</td></tr></table></td>
               </tr>
               <tr><td height='5px' colspan='2'></td></tr>
             </table>

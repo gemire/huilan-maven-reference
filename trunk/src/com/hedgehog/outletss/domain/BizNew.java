@@ -11,6 +11,7 @@ import java.sql.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -34,7 +35,7 @@ public class BizNew  implements java.io.Serializable {
  *             column="NewsID"
  *         
      */
-     private String newsId;
+     private Integer newsId;
      /**
       *            @hibernate.property
  *             column="News_title"
@@ -97,15 +98,15 @@ public class BizNew  implements java.io.Serializable {
      *             column="NewsID"
      *         
      */
+     
      @Id
-  	@Column(name = "NewsID",length =40,unique=true, nullable=false)	
-  	@GeneratedValue(generator = "system-uuid")
-  	@GenericGenerator(name = "system-uuid", strategy = "uuid")
-    public String getNewsId() {
+     @GeneratedValue(strategy = GenerationType.IDENTITY)
+     @Column(name = "NewsID",unique=true, nullable=false)
+    public Integer getNewsId() {
         return this.newsId;
     }
     
-    public void setNewsId(String newsId) {
+    public void setNewsId(Integer newsId) {
         this.newsId = newsId;
     }
     /**       
