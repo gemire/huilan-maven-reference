@@ -153,8 +153,10 @@ public class FieldManagerController {
          //BeanUtils.copyProperties(sysFieldValue,fieldvalue, new String[]{"vtext","vcode"});
 		fieldvalue.setVshowOrder(0);
 		this.sysFieldService.saveOrUpdateFieldValue(fieldvalue);
-		
-		return "redirect:FieldValueManager?fieldId="+fieldId+"&cmd=list";
+		String Messages=String.format("增加应用字段值({0})成功!", fieldvalue);
+		modelMap.addAttribute("TabJs", "<script language='javascript'>window.returnVal=\"" + Messages + "\";window.parent.hidePopWin(true);</script>");
+		return "FieldManager/FieldValueBox";
+		//return "redirect:FieldValueManager?fieldId="+fieldId+"&cmd=list";
 	}
 	
 	@RequestMapping(value={"/FieldValueBox"},method=RequestMethod.GET,params="cmd=edit")
@@ -186,7 +188,10 @@ public class FieldManagerController {
 		BeanUtils.copyProperties(sysFieldValue,fieldvalue, new String[]{"vtext","vcode"});
 		
 		this.sysFieldService.saveOrUpdateFieldValue(fieldvalue);
-		return "redirect:FieldValueManager?fieldId="+fieldId+"&cmd=list";
+		String Messages=String.format("修改应用字段值({0})成功!", fieldvalue);
+		modelMap.addAttribute("TabJs", "<script language='javascript'>window.returnVal=\"" + Messages + "\";window.parent.hidePopWin(true);</script>");
+		return "FieldManager/FieldValueBox";
+		//return "redirect:FieldValueManager?fieldId="+fieldId+"&cmd=list";
 	}
 	
 	
