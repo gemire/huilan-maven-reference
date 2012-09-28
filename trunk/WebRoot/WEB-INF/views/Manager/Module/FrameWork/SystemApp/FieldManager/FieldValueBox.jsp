@@ -5,8 +5,8 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<c:if test="${not empty tags}">
-<script language='javascript'>window.returnVal='增加应用字段成功';window.parent.hidePopWin(true);</script>
+<c:if test="${not empty TabJs}">
+${TabJs}
 </c:if>
 <form:form modelAttribute="fieldvalue">
 <table id="ctl00_PageBody_Table_Manager_FieldValue" width="100%" border="0" cellspacing="1" cellpadding="3" align="center">
