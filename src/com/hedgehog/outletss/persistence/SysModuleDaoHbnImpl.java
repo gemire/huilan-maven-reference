@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 import com.googlecode.ehcache.annotations.Cacheable;
 import com.googlecode.ehcache.annotations.TriggersRemove;
 import com.googlecode.ehcache.annotations.When;
-import com.hedgehog.outletss.Utils.QueryPara;
+import com.hedgehog.outletss.domain.QueryPara;
 import com.hedgehog.outletss.domain.SysModule;
 
 

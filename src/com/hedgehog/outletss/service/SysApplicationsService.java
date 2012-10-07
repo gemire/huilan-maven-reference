@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 
-import com.hedgehog.outletss.Utils.QueryPara;
+import com.hedgehog.outletss.domain.QueryPara;
 import com.hedgehog.outletss.domain.SysApplication;
 
 public interface SysApplicationsService {

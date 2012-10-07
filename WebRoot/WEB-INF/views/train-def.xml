@@ -15,7 +15,7 @@
    </definition>
    <!-- 首页 -->
    <definition name="home" extends="template">  
-        <put-attribute name="title" value="奥特莱斯网首页"/>     
+        <put-attribute name="title" value="奥特莱斯联盟首页"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_index.jsp"/>        
         <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_index.jsp"/>
         <put-attribute name="box_main" value="/WEB-INF/views/tiles/box_main_index.jsp"/>
@@ -89,7 +89,7 @@
       </definition>
       <!-- 战略合作伙伴 -->
        <definition name="brand" extends="template">  
-        <put-attribute name="title" value="战略合作伙伴"/>     
+        <put-attribute name="title" value="战略合作伙伴-奥特莱斯联盟"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
         <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_inchina.jsp"/>
         <put-attribute name="box_main">
@@ -102,7 +102,7 @@
       </definition>
       <!-- 业态研究 -->
       <definition name="research" extends="template">  
-        <put-attribute name="title" value="业态研究"/>     
+        <put-attribute name="title" value="业态研究-奥特莱斯联盟"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
         <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_research.jsp"/>
         <put-attribute name="box_main">
@@ -115,7 +115,7 @@
       </definition>
       <!-- 业态研究详细 -->
       <definition name="research_detail" extends="template">  
-        <put-attribute name="title" value="业态研究"/>     
+        <put-attribute name="title" value="业态研究-奥特莱斯联盟"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
         <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_research.jsp"/>
         <put-attribute name="box_main">
@@ -128,7 +128,7 @@
       </definition>
       <!-- 新闻中心 -->
       <definition name="news" extends="template">  
-        <put-attribute name="title" value="新闻中心"/>     
+        <put-attribute name="title" value="新闻中心-奥特莱斯联盟"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
         <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_news.jsp"/>
         <put-attribute name="box_main">
@@ -141,7 +141,7 @@
       </definition>
       <!-- 新闻中心详细 -->
       <definition name="news_detail" extends="template">  
-        <put-attribute name="title" value="新闻中心"/>     
+        <put-attribute name="title" value="新闻中心-奥特莱斯联盟"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
         <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_news.jsp"/>
         <put-attribute name="box_main">
@@ -154,7 +154,7 @@
       </definition>
       <!-- 联系我们 -->
       <definition name="conter" extends="template">  
-        <put-attribute name="title" value="联系我们"/>     
+        <put-attribute name="title" value="联系我们-奥特莱斯联盟"/>     
         <put-attribute name="header" value="/WEB-INF/views/tiles/header_about.jsp"/>        
         <put-attribute name="box_header" value="/WEB-INF/views/tiles/box_header_conter.jsp"/>
         <put-attribute name="box_main">

@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.googlecode.ehcache.annotations.Cacheable;
 import com.googlecode.ehcache.annotations.TriggersRemove;
 import com.googlecode.ehcache.annotations.When;
-import com.hedgehog.outletss.Utils.QueryPara;
+import com.hedgehog.outletss.domain.QueryPara;
 import com.hedgehog.outletss.domain.SysApplication;
 import com.hedgehog.outletss.persistence.SysApplicationsDao;
 
@@ -41,6 +41,11 @@ public class SysApplicationsServiceImpl implements SysApplicationsService{
 	
 	public void saveOrUpdate(SysApplication record) {
 		// TODO Auto-generated method stub
+		//System.out.println("未设置order值："+record.getAorder());
+		if(record.getAorder()==null)
+		{
+			record.setAorder(this.applicationsDao.selectMaxOrder());
+		}
 		this.applicationsDao.saveOrUpdate(record);
 	}
 	

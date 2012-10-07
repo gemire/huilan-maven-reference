@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="com.hedgehog.outletss.domain.SysApplication"%>
-<%@page import="com.hedgehog.outletss.Utils.QueryPara"%>
+<%@page import="com.hedgehog.outletss.domain.QueryPara"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
@@ -13,7 +13,7 @@
               </tr>
               <tr>
                 <td height='27px' class='menubar_function_text'>目前操作功能：应用列表</td>
-                <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='Manager?CMD=New';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/new.gif">&nbsp;新增应用</td><td class="menubar_button" id="button_1" OnClick="JavaScript:window.location.href='Orderby.aspx';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/orderby.gif">&nbsp;排序应用</td></tr></table></td>
+                <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='Manager?cmd=new';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/new.gif">&nbsp;新增应用</td><td class="menubar_button" id="button_1" OnClick="JavaScript:window.location.href='Orderby';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/orderby.gif">&nbsp;排序应用</td></tr></table></td>
               </tr>
               <tr><td height='5px' colspan='2'></td></tr>
             </table>
@@ -81,7 +81,7 @@
     app=(SysApplication)it.next();
     %>
     <tr class="<%=temp%2==1?"row":"row1"%>" align="center" style="height:28px;">
-			<td><%=temp%></td><td><%=app.getAappName()%></td><td><%=app.getAappDescription()%></td><td><a href="<%=app.getAappUrl()%>" target="_blank"><%=app.getAappUrl()%></a></td><td><a href="Manager?CMD=Edit&IDX=<%=app.getApplicationId()%>">编辑</a>||<a href="JavaScript:DelData('Manager?CMD=Delete&IDX=<%=app.getApplicationId()%>')">删除</a></td>
+			<td><%=temp%></td><td><%=app.getAappName()%></td><td><%=app.getAappDescription()%></td><td><a href="<%=app.getAappUrl()%>" target="_blank"><%=app.getAappUrl()%></a></td><td><a href="Manager?cmd=edit&IDX=<%=app.getApplicationId()%>">编辑</a>||<a href="JavaScript:DelData('Manager?cmd=del&IDX=<%=app.getApplicationId()%>')">删除</a></td>
 		</tr>
     <%
     
@@ -189,4 +189,35 @@ else
         </TBODY>
         </TABLE>
   
+<script language='javascript'>
+        //alert("${ctx}");
+        function tabClick(idx,count) {
+          for (i_tr = 0; i_tr < count; i_tr++) {
+            if (i_tr == idx) {
+              var tabImgLeft = document.getElementById('tabImgLeft__' + idx);
+              var tabImgRight = document.getElementById('tabImgRight__' + idx);
+              var tabLabel = document.getElementById('tabLabel__' + idx);
+              var tabContent = document.getElementById('tabContent__' + idx);
 
+              tabImgLeft.src = '${ctx}/Manager/images/Menu/tab_active_left.gif';
+              tabImgRight.src = '${ctx}/Manager/images/Menu/tab_active_right.gif';
+              tabLabel.style.backgroundImage = "url(${ctx}/Manager/images/Menu/tab_active_bg.gif)";
+              tabContent.style.visibility = 'visible';
+              tabContent.style.display = 'block';
+              continue;
+            }
+            var tabImgLeft = document.getElementById('tabImgLeft__' + i_tr);
+            var tabImgRight = document.getElementById('tabImgRight__' + i_tr);
+            var tabLabel = document.getElementById('tabLabel__' + i_tr);
+            var tabContent = document.getElementById('tabContent__' + i_tr);
+
+            tabImgLeft.src = '${ctx}/Manager/images/Menu/tab_unactive_left.gif';
+            tabImgRight.src = '${ctx}/Manager/images/Menu/tab_unactive_right.gif';
+            tabLabel.style.backgroundImage = "url(${ctx}/Manager/images/Menu/tab_unactive_bg.gif)";
+            tabContent.style.visibility = 'hidden';
+            tabContent.style.display = 'none';
+          }
+          document.getElementById('FrameWork_YOYO_LzppccSelectIndex').value=idx;
+        }
+        tabClick(0,1);
+       </script>

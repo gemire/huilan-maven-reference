@@ -28,9 +28,9 @@
     <property name="basenamePrefix" value="theme."></property>  
 </bean>
  <bean id="themeResolver"  class="org.springframework.web.servlet.theme.CookieThemeResolver">  
-    <property name="defaultThemeName" value="default" />
+    <property name="defaultThemeName" value="green" />
     <property name="cookieMaxAge" value="1200"/>
-    <property name="cookiePath" value="/Manager/"/>
+    <property name="cookiePath" value="/outletss/Manager/"/>
 </bean> 
 <!-- 自动扫描且只扫描@Controller -->
 <context:component-scan base-package="com.hedgehog.outletss.controller" use-default-filters="false">
@@ -64,7 +64,7 @@
 	<!-- 定义首页 -->	
 	<!--<mvc:view-controller path="/" view-name="redirect:/account/user/"/>-->
 	<!-- <mvc:view-controller path="/Manager/message" view-name="Manager/message"/> -->
-	<mvc:view-controller path="**/message" view-name="Manager/message"/>
+	<mvc:view-controller path="**/Message" view-name="Manager/Messages"/>
 	<mvc:view-controller path="/" view-name="home"/>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
@@ -106,9 +106,11 @@
           
     <!-- servlet适配器，这里必须明确声明，因为spring默认没有初始化该适配器 -->  
     <bean id="servletHandlerAdapter" class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter"/> 
-    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    
+    <!--<bean id="exceptionResolver" class="org.springframework.web.servlet.MyExceptionHandler"/>-->
+    <!--<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
       <property name="defaultErrorView" value="errorpages/failure"/>
-    </bean>
+    </bean>-->
 	
 	
 	

@@ -14,4 +14,8 @@
     <put-attribute name="content" 
                    value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/AppManager/AppManager.jsp" />
    </definition>
+   <definition name="AppManager/Orderby" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/AppManager/Orderby.jsp" />
+   </definition>
 </tiles-definitions>

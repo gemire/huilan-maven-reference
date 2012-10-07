@@ -6,6 +6,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
+import com.hedgehog.outletss.Utils.EncryptUtil;
 import com.hedgehog.outletss.domain.SysUser;
 import com.hedgehog.outletss.service.MyUserDetailsService;
 
@@ -35,14 +36,23 @@ public class UserSetValidation {
 //		{
 //			errors.rejectValue("renewupassword", "error.renewupassword.required","�������������벻��Ϊ��");	
 //		}
-		//本系统注释
-//		if(StringUtils.hasLength(user.getNewupassword())&&StringUtils.hasLength(user.getRenewupassword()))
-//		{
-//			if(!user.getNewupassword().equals(user.getRenewupassword()))
-//			{
-//				errors.rejectValue("renewupassword", "error.renewupassword.inconsequent","�����������벻һ��");	
-//			}			
-//		}
+		//本系统注释		
+		if(StringUtils.hasLength(user.getOldupassword())&&StringUtils.hasLength(user.getNewupassword())&&StringUtils.hasLength(user.getRenewupassword()))
+		{
+			if(!user.getNewupassword().equals(user.getRenewupassword()))
+			{
+				errors.rejectValue("renewupassword", "error.renewupassword.inconsequent","两次输入密码不一致");	
+			}
+			
+			SysUser sysuser =this.sysUserService.selectByUserName(user.getUloginName());
+			
+			if(!EncryptUtil.match(sysuser.getUpassword(), EncryptUtil.encrypt(user.getOldupassword())))
+			{
+				errors.rejectValue("oldupassword", "error.oldupassword.error","旧密码错误");
+				
+			}
+			
+		}
 		
 //		if(StringUtils.hasLength(user.getOldupassword()))
 //		{

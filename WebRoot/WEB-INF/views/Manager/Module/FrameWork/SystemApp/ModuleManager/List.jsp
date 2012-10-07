@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="com.hedgehog.outletss.domain.SysApplication"%>
-<%@page import="com.hedgehog.outletss.Utils.QueryPara"%>
+<%@page import="com.hedgehog.outletss.domain.QueryPara"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -82,3 +82,35 @@
 	        </TR>
         </TBODY>
         </TABLE>
+        <script language='javascript'>
+        //alert("${ctx}");
+        function tabClick(idx,count) {
+          for (i_tr = 0; i_tr < count; i_tr++) {
+            if (i_tr == idx) {
+              var tabImgLeft = document.getElementById('tabImgLeft__' + idx);
+              var tabImgRight = document.getElementById('tabImgRight__' + idx);
+              var tabLabel = document.getElementById('tabLabel__' + idx);
+              var tabContent = document.getElementById('tabContent__' + idx);
+
+              tabImgLeft.src = '${ctx}/Manager/images/Menu/tab_active_left.gif';
+              tabImgRight.src = '${ctx}/Manager/images/Menu/tab_active_right.gif';
+              tabLabel.style.backgroundImage = "url(${ctx}/Manager/images/Menu/tab_active_bg.gif)";
+              tabContent.style.visibility = 'visible';
+              tabContent.style.display = 'block';
+              continue;
+            }
+            var tabImgLeft = document.getElementById('tabImgLeft__' + i_tr);
+            var tabImgRight = document.getElementById('tabImgRight__' + i_tr);
+            var tabLabel = document.getElementById('tabLabel__' + i_tr);
+            var tabContent = document.getElementById('tabContent__' + i_tr);
+
+            tabImgLeft.src = '${ctx}/Manager/images/Menu/tab_unactive_left.gif';
+            tabImgRight.src = '${ctx}/Manager/images/Menu/tab_unactive_right.gif';
+            tabLabel.style.backgroundImage = "url(${ctx}/Manager/images/Menu/tab_unactive_bg.gif)";
+            tabContent.style.visibility = 'hidden';
+            tabContent.style.display = 'none';
+          }
+          document.getElementById('FrameWork_YOYO_LzppccSelectIndex').value=idx;
+        }
+        tabClick(0,1);
+       </script>

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hedgehog.outletss.Utils.QueryPara;
+import com.hedgehog.outletss.domain.QueryPara;
 import com.hedgehog.outletss.domain.SysUser;
 import com.hedgehog.outletss.persistence.SysUserDao;
 
@@ -92,6 +92,24 @@ public class MyUserDetailsServiceImpl implements MyUserDetailsService {
 	public void deleteByPrimaryKey(Serializable userId) {
 		// TODO Auto-generated method stub
 		this.sysUserDao.deleteByPrimaryKey(userId);
+	}
+
+
+
+
+	@Override
+	public SysUser selectByUserName(String username) {
+		// TODO Auto-generated method stub
+		return this.sysUserDao.selectByUserName(username);
+	}
+
+
+
+
+	@Override
+	public boolean authenticate(String username, String password) {
+		// TODO Auto-generated method stub
+		return this.sysUserDao.authenticate(username, password);
 	}
 	
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hedgehog.outletss.Utils.QueryPara;
+import com.hedgehog.outletss.domain.QueryPara;
 import com.hedgehog.outletss.domain.BizNew;
 import com.hedgehog.outletss.persistence.BizNewDao;
 

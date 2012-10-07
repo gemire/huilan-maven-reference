@@ -41,6 +41,8 @@ import org.springframework.web.servlet.theme.CookieThemeResolver;
 
 import com.hedgehog.outletss.domain.SysModule;
 import com.hedgehog.outletss.domain.SysSystemInfo;
+import com.hedgehog.outletss.domain.SysUser;
+import com.hedgehog.outletss.service.MyUserDetailsService;
 import com.hedgehog.outletss.service.SysModuleService;
 import com.hedgehog.outletss.service.SysSystemInfoService;
 
@@ -58,6 +60,11 @@ public class BasicController {
 	@Inject
 	public BasicController(SysSystemInfoService systemInfoService) {		
 		this.systemInfoService = systemInfoService;
+	}
+	private MyUserDetailsService myUserDetailsService;
+	@Autowired
+	public void setMyUserDetailsService(MyUserDetailsService myUserDetailsService) {
+		this.myUserDetailsService = myUserDetailsService;
 	}
 	
 //	private ApplicationsService applicationsService;		
@@ -78,11 +85,12 @@ public class BasicController {
 	//forward
 	@RequestMapping(value={"/Main"},method=GET)
 	public String manager(			
-			@RequestParam(value="theme", defaultValue="default") String theme,
 			HttpServletRequest request,
 			HttpServletResponse response,
 			ModelMap modelMap) 
 	{
+		//@RequestParam(value="theme", defaultValue="default") String theme,
+		
 //		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //		List <GrantedAuthority> list=(List<GrantedAuthority>) auth.getAuthorities();
 //		for(GrantedAuthority au:list)
@@ -90,6 +98,7 @@ public class BasicController {
 //			System.out.println(au.getAuthority());
 //		}
 		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
 		log.info("当前用户："+userDetails.getUsername());
 		List <GrantedAuthority> list=(List<GrantedAuthority>) userDetails.getAuthorities();
 		for(GrantedAuthority au:list)
@@ -100,11 +109,18 @@ public class BasicController {
 		
 		//@CookieValue(value="sysuser",defaultValue="") String cookieuserName,
 		
-		System.out.println("theme:"+theme);
+		//System.out.println("theme:"+theme);
 		//String ss=CookieThemeResolver.DEFAULT_COOKIE_NAME;
-		log.info("current theme is "+themeResolver.resolveThemeName(request));
-		themeResolver.setThemeName(request,response,theme);
-		log.info("current theme change to " +themeResolver.resolveThemeName(request));
+		log.info("main current theme is "+themeResolver.resolveThemeName(request));
+//		SysUser sysUser=this.myUserDetailsService.selectByUserName(userDetails.getUsername());
+//		String[] strarray=(sysUser.getUextendField()+"").split(",");
+//		if(strarray.length==3)
+//		{
+//			this.themeResolver.setThemeName(request, response, sysUser.getTableSink());	
+//		}
+		
+		//themeResolver.setThemeName(request,response,"red");
+		//log.info("current theme change to " +themeResolver.resolveThemeName(request));
 		
 		//Cookie themecookie=new Cookie(CookieThemeResolver.DEFAULT_COOKIE_NAME, theme);
 		//themecookie.setMaxAge(1200);
@@ -256,6 +272,18 @@ public class BasicController {
 //		model.addAttribute("sysinfo", systeminfo);		
 //		return "Manager/right";	
 		return "forward:/Manager/Module/FrameWork/SystemMaintenance/SystemConfig/right";
+	}
+	@RequestMapping(value={"/UserSet"},method=GET)
+	public String userset(			
+			ModelMap model)
+	{		
+		return "forward:/Manager/Module/FrameWork/SystemApp/UserManager/UserSet";
+	}
+	@RequestMapping(value={"/UserSet"},method=POST)
+	public String usersetpost(			
+			ModelMap model)
+	{		
+		return "forward:/Manager/Module/FrameWork/SystemApp/UserManager/UserSet";
 	}
 	
 	

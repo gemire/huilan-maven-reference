@@ -166,7 +166,7 @@ public class SysRole  implements java.io.Serializable {
         this.rroleCode = rroleCode;
     }
     
-    @ManyToOne(cascade={CascadeType.ALL},fetch = FetchType.LAZY)
+    @ManyToOne(cascade={CascadeType.REFRESH},fetch = FetchType.LAZY)
     @JoinColumn(name="R_UserID",nullable=false,insertable=false,updatable=false)
     public SysUser getRsysUser() {
 		return rsysUser;

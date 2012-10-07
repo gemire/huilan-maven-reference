@@ -24,9 +24,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<link rel="stylesheet" href="${ctx}/Manager/Css/Site_Css.css" type="text/css" />
-<link rel="shortcut icon" href="${ctx}/Manager/images/Icon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="${ctx}/Manager/images/icon.ico" type="image/x-icon" />
     <script language="javascript" src="${ctx}/Manager/js/checkform.js"></script>
-    <script type="text/javascript" src="/resources/js/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="${ctx}/js/jquery-1.4.4.min.js"></script>
 <script type="text/javascript">
 var $j=jQuery.noConflict(); 
 $j(function(){           

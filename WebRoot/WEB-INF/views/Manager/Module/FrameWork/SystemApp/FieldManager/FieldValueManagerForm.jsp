@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="com.hedgehog.outletss.domain.*"%>
-<%@page import="com.hedgehog.outletss.Utils.QueryPara"%>
+<%@page import="com.hedgehog.outletss.domain.QueryPara"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -18,7 +18,7 @@
                 <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='Default';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/list.gif">&nbsp;列表应用字段</td>
                 
                 <td class="menubar_button" id="button_1" OnClick="JavaScript:window.location.href='FieldValueManager?cmd=list&fieldId=6';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/back.gif">&nbsp;返回</td>
-                <td class="menubar_button" id="button_2" OnClick="JavaScript:DelData('FieldValueManager?cmd=del&FieldId=6')" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/delete.gif">&nbsp;删除应用字段</td>
+                <td class="menubar_button" id="button_2" OnClick="JavaScript:DelData('FieldValueManager?cmd=del&fieldId=${param.fieldId}')" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/delete.gif">&nbsp;删除应用字段</td>
                 
                 </tr></table></td>
               </tr>

@@ -58,6 +58,10 @@ TD {FONT-SIZE: 12px; FONT-FAMILY: "Verdana", "Arial", "细明体", "sans-serif"}
 		{
 			for(SysModule pm: list_parentmodule)
 			{
+				if(pm.getSubsysModules().size()==0)
+				{
+				  continue;
+				}
 			//父循环开始
 			%>
 			

@@ -30,7 +30,7 @@
 		        <TBODY>
                        <TR>
 				         <TD width=3><IMG id=tabImgLeft__0 height=22 src='${ctx}/Manager/images/Menu/tab_unactive_left.gif'  width=3></TD>
-				         <TD class=tab id=tabLabel__0 onclick='javascript:tabClick(0,1)' background='${ctx}/Manager/images/Menu/tab_unactive_bg.gif' UNSELECTABLE='on'>修改蛙跳资讯</TD>
+				         <TD class=tab id=tabLabel__0 onclick='javascript:tabClick(0,1)' background='${ctx}/Manager/images/Menu/tab_unactive_bg.gif' UNSELECTABLE='on'>修改新闻</TD>
 				         <TD width=3><IMG id=tabImgRight__0 height=22 src='${ctx}/Manager/images/Menu/tab_unactive_right.gif' width=3></TD>
 			           </TR>
 		        </TBODY>
@@ -51,7 +51,7 @@
 			        <TD style='PADDING-RIGHT: 15px; PADDING-LEFT: 15px; PADDING-BOTTOM: 15px; PADDING-TOP: 15px; HEIGHT: 100px' vAlign=top>
         <input type='hidden' ID='FrameWork_YOYO_LzppccSelectIndex' name='FrameWork_YOYO_LzppccSelectIndex' value='0'><!--内容框Start--><DIV id='tabContent__0' style='display:none'>
             
-            <form:form modelAttribute="syNew">
+            <form:form modelAttribute="bizNew">
             <table width="100%" border="0" cellspacing="1" cellpadding="3" align="center">
 
                 <tr>
@@ -64,17 +64,22 @@
                     
                         </td>
                 </tr>
+                <tr>
+    <td class="table_body">自定义属性</td>
+    <td class="table_none"><form:checkboxes path="newsFlag" items="${sortlist}"/>
+                       <form:errors path="newsFlag" cssClass="error" /> </td>
+  </tr>
                  
                 <tr>
                     <td class="table_body" style="width: 18%">
                         类别</td>
                     <td class="table_none">
-                    <form:select path="newsSort" cssClass="text_input" cssStyle="width:100px;">
+                    <form:select path="newsCate" cssClass="text_input" cssStyle="width:100px;">
                     <form:option value="">请选择类别</form:option>
                     <form:options items="${nclist}" itemValue="valueId" itemLabel="vtext"/>
                     </form:select>
                     <span class="required">* 必填</span>                    
-                <form:errors path="newsSort" cssClass="error" />
+                <form:errors path="newsCate" cssClass="error" />
                      
                        
                     
@@ -92,18 +97,7 @@
                         </td>
                 </tr>
 
-                <tr>
-                    <td class="table_body" style="width: 18%">
-                        缩略图</td>
-                    <td class="table_none">
-                    <form:input path="newsPicpath" cssClass="text_input" cssStyle="width:255px;"/>
-                    <input type="button" value=" 浏 览 " onclick="BrowseServer('newsPicpath');" />
-                <form:errors path="newsPicpath" cssClass="error" />
-                                   
-                       
-                        
-                        </td>
-                </tr>
+                
                 
                 <tr>
 
@@ -139,7 +133,7 @@
                               
                 <tr id="ctl00_PageBody_ButtonOption">
 	<td align="right" colspan="2">
-                        <input type="submit" name="ctl00$PageBody$Button1" value="确定" onclick="return check1();" id="ctl00_PageBody_Button1" class="button_bak" />
+                        <input type="submit" name="ctl00$PageBody$Button1" value="确定" id="ctl00_PageBody_Button1" class="button_bak" />
                         <input id="Reset1" class="button_bak" type="reset" value="重填" />
                     </td>
 </tr>
@@ -197,37 +191,7 @@ window.CKEDITOR_BASEPATH='${ctx}/ckeditor/';
 //]]></script>
 <script type="text/javascript" src="${ctx}/ckeditor/ckeditor.js?t=B37D54V"></script>
 <script type="text/javascript" src="${ctx}/ckfinder/ckfinder.js"></script>
-<script type="text/javascript"> 
-<!--
-                function BrowseServer(inputId)
-                {
-                var finder = new CKFinder() ;
-                finder.basePath = '${ctx}/ckfinder/';  //导入CKFinder的路径
-                finder.selectActionFunction = SetFileField; //设置文件被选中时的函数
-                finder.selectActionData = inputId;  //接收地址的input ID
-                finder.popup() ;
-                }
-                
-                //文件选中时执行
-                function SetFileField(fileUrl,data)
-                {
-                    document.getElementById(data["selectActionData"]).value = fileUrl ;
-                }
-                function Validate()
-				  {
-					 var image =document.getElementById("fileData").value;
-					 if(image!=''){
-						  var checkimg = image.toLowerCase();
-						  if (!checkimg.match(/(\.jpg|\.png|\.JPG|\.PNG|\.jpeg|\.JPEG)$/)){
-							  alert("Please enter  Image  File Extensions .jpg,.png,.jpeg");
-							  document.getElementById("fileData").focus();
-							  return false;
-						    }
-						 }
-					 return true;
-				 }			
-                // -->
-            </script>
+
 <script type="text/javascript">//<![CDATA[
 var editor=CKEDITOR.replace('newsContent');
 // Just call CKFinder.setupCKEditor and pass the CKEditor instance as the first argument.

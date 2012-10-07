@@ -17,7 +17,7 @@
 
 		<name>urlEncode</name>
 
-		<tag-class>com.huilan.Utils.EncodeTag</tag-class>
+		<tag-class>com.hedgehog.outletss.Utils.EncodeTag</tag-class>
 
 		<body-content>empty</body-content>
 

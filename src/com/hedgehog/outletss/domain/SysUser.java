@@ -247,9 +247,19 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
  *             length="2147483647"
  *         
      */
-     private byte[] uextendField;
+     private String uextendField;
      
      private List<SysRole> roles;
+     
+     private String oldupassword;
+     
+     private String newupassword;
+     
+     private String renewupassword;
+     
+     private String MenuSink;
+     private String TableSink;
+     private String PageSize;
     
    
     /**       
@@ -645,15 +655,15 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
      *             length="2147483647"
      *         
      */
-    @Column(name="U_ExtendField",length=2147483647)
-    public byte[] getUextendField() {
+    @Column(name="U_ExtendField",length=65535)
+    public String getUextendField() {
         return this.uextendField;
     }
     
-    public void setUextendField(byte[] uextendField) {
+    public void setUextendField(String uextendField) {
         this.uextendField = uextendField;
     }
-    @ManyToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
 	@JoinTable(name="sys_UserRoles",
 				joinColumns={@JoinColumn(name="R_UserID")},
 				inverseJoinColumns={@JoinColumn(name="R_RoleID")})
@@ -663,6 +673,59 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
 
 	public void setRoles(List<SysRole> roles) {
 		this.roles = roles;
+	}
+	/**
+	 * 业务逻辑属性
+	 * @return
+	 */
+	@Transient
+	public String getOldupassword() {
+		return oldupassword;
+	}
+
+	public void setOldupassword(String oldupassword) {
+		this.oldupassword = oldupassword;
+	}
+	@Transient
+	public String getNewupassword() {
+		return newupassword;
+	}
+
+	public void setNewupassword(String newupassword) {
+		this.newupassword = newupassword;
+	}
+	@Transient
+	public String getRenewupassword() {
+		return renewupassword;
+	}
+
+	public void setRenewupassword(String renewupassword) {
+		this.renewupassword = renewupassword;
+	}
+	@Transient
+	public String getMenuSink() {
+		return MenuSink;
+	}
+
+	public void setMenuSink(String menuSink) {
+		MenuSink = menuSink;
+	}
+	@Transient
+	public String getTableSink() {
+		return TableSink;
+	}
+
+	public void setTableSink(String tableSink) {
+		TableSink = tableSink;
+	}
+	
+	@Transient
+	public String getPageSize() {
+		return PageSize;
+	}
+
+	public void setPageSize(String pageSize) {
+		PageSize = pageSize;
 	}
     /**
      * 实现UserDetails接口方法
@@ -675,7 +738,7 @@ public class SysUser  implements java.io.Serializable ,UserDetails{
     		for(SysRole role: roles)
     		{
     			//list.add(new GrantedAuthorityImpl(role.getName()));
-    			grantedAuthorities.add(new SimpleGrantedAuthority(role.getRroleName()));
+    			grantedAuthorities.add(new SimpleGrantedAuthority(role.getRroleCode()));
     			//log.info("sysuer:"+role.getRroleName());
     		}
     		//grantedAuthorities.toArray(new GrantedAuthority[roles.size()]);   

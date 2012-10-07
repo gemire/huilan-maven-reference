@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Repository;
 import com.googlecode.ehcache.annotations.Cacheable;
 import com.googlecode.ehcache.annotations.TriggersRemove;
 import com.googlecode.ehcache.annotations.When;
-import com.hedgehog.outletss.Utils.QueryPara;
+import com.hedgehog.outletss.domain.QueryPara;
 import com.hedgehog.outletss.domain.SysApplication;
 
 @Repository("applicationsDao")
@@ -38,7 +39,7 @@ public class SysApplicationsDaoHbnImpl implements SysApplicationsDao{
 	@Cacheable(cacheName = "baseCache")
 	public List<SysApplication> selectAllRecord() {
 		// TODO Auto-generated method stub
-		List<SysApplication> list=(List<SysApplication>)this.sessionFactory.getCurrentSession().createCriteria(SysApplication.class).list();
+		List<SysApplication> list=(List<SysApplication>)this.sessionFactory.getCurrentSession().createCriteria(SysApplication.class).addOrder(Order.asc("aorder")).list();
 		return list;
 	}
 	@SuppressWarnings("unchecked")	
@@ -108,6 +109,13 @@ public class SysApplicationsDaoHbnImpl implements SysApplicationsDao{
 		// TODO Auto-generated method stub
 		SysApplication app=(SysApplication)this.sessionFactory.getCurrentSession().load(SysApplication.class, applicationid);
 		return app;
+	}
+	@Override
+	public Integer selectMaxOrder() {
+		// TODO Auto-generated method stub
+		SQLQuery sqlquery=this.sessionFactory.getCurrentSession().createSQLQuery("select max(A_Order) from sys_Applications");		
+		int maxorder = ((Number)sqlquery.uniqueResult()).intValue();			
+		return maxorder;
 	}	
 
 }
