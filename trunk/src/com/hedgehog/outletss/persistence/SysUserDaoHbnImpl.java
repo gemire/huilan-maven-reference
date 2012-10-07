@@ -18,7 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.googlecode.ehcache.annotations.Cacheable;
-import com.hedgehog.outletss.Utils.QueryPara;
+import com.googlecode.ehcache.annotations.TriggersRemove;
+import com.googlecode.ehcache.annotations.When;
+import com.hedgehog.outletss.domain.QueryPara;
 import com.hedgehog.outletss.domain.SysUser;
 
 @Repository("sysUserDao")
@@ -31,6 +33,7 @@ public class SysUserDaoHbnImpl implements SysUserDao{
 	}
 
 	@Override
+	@Cacheable(cacheName = "baseCache")
 	public SysUser findUserByName(final String name) {
 		// TODO Auto-generated method stub
 		SQLQuery sqlquery=this.sessionFactory.getCurrentSession().createSQLQuery("select * from sys_User where U_LoginName=:uloginName");
@@ -42,6 +45,7 @@ public class SysUserDaoHbnImpl implements SysUserDao{
 
 	@Override
 	@SuppressWarnings("unchecked")
+	@Cacheable(cacheName = "baseCache")
 	public List<SysUser> selectAllRecord() {
 		// TODO Auto-generated method stub
 		return (List<SysUser>)this.sessionFactory.getCurrentSession().createCriteria(SysUser.class).list();
@@ -112,18 +116,21 @@ public class SysUserDaoHbnImpl implements SysUserDao{
 	}
 
 	@Override
+	@Cacheable(cacheName = "baseCache")
 	public SysUser selectByPrimaryKey(Serializable userId) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
 		return (SysUser)this.sessionFactory.getCurrentSession().load(SysUser.class, userId);
 	}
 
 	@Override
+	@TriggersRemove(cacheName = "baseCache", when = When.AFTER_METHOD_INVOCATION, removeAll = true)
 	public void saveOrUpdate(SysUser record) {
 		// TODO Auto-generated method stub
 		this.sessionFactory.getCurrentSession().saveOrUpdate(record);
 	}
 
 	@Override
+	@TriggersRemove(cacheName = "baseCache", when = When.AFTER_METHOD_INVOCATION, removeAll = true)
 	public void deleteByPrimaryKey(Serializable userId) {
 		// TODO Auto-generated method stub
 		SysUser user=(SysUser)this.sessionFactory.getCurrentSession().load(SysUser.class, userId);
@@ -131,6 +138,30 @@ public class SysUserDaoHbnImpl implements SysUserDao{
 		{
 			this.sessionFactory.getCurrentSession().delete(user);
 		}
+	}
+
+	@Override
+	@Deprecated
+	@Cacheable(cacheName = "baseCache")
+	public SysUser selectByUserName(String username) {
+		// TODO Auto-generated method stub
+		SQLQuery sqlquery=this.sessionFactory.getCurrentSession().createSQLQuery("select * from sys_User where U_LoginName=:uloginName");
+		sqlquery.setParameter("uloginName", username);
+		sqlquery.addEntity(SysUser.class);	
+		sqlquery.setMaxResults(1);		
+		return (SysUser)sqlquery.uniqueResult();
+	}
+
+	@Override
+	@Deprecated
+	public boolean authenticate(String username, String password) {
+		// TODO Auto-generated method stub
+		SQLQuery sqlquery=this.sessionFactory.getCurrentSession().createSQLQuery("select count(*) from sys_User where U_LoginName=:uloginName and U_Password=:upassword");
+		sqlquery.setParameter("uloginName", username);
+		sqlquery.setParameter("upassword", password);
+		int rowCount = ((Number)sqlquery.uniqueResult()).intValue();
+		System.out.println("查询结果数目："+rowCount);		
+		return rowCount>0?true:false;
 	}
 	
 

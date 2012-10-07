@@ -1,6 +1,7 @@
 package com.hedgehog.outletss.controller.Manager;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -17,8 +18,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.hedgehog.outletss.Utils.QueryPara;
+import com.hedgehog.outletss.domain.MessageBox;
+import com.hedgehog.outletss.domain.QueryPara;
+import com.hedgehog.outletss.domain.sys_NavigationUrl;
+import com.hedgehog.outletss.domain.MessageBox.Icon_Type;
+import com.hedgehog.outletss.domain.sys_NavigationUrl.UrlType;
 import com.hedgehog.outletss.domain.SysApplication;
 import com.hedgehog.outletss.domain.SysModule;
 import com.hedgehog.outletss.domain.SysUser;
@@ -110,9 +116,10 @@ public class ModuleManagerController {
 	public String moduleManageradd(				
 			@RequestParam(value="S_ID") int S_ID,
 			@RequestParam(value="mparentId",defaultValue="0") int mparentId,
+			@RequestParam(value="ModuleId",defaultValue="0") int ModuleId,
 			@ModelAttribute("sysModule") @Valid SysModule sysModule,
 			BindingResult result,
-			ModelMap modelMap) 
+			RedirectAttributes redirectAttributes) 
 	{
 		
 		if(result.hasErrors())
@@ -123,7 +130,17 @@ public class ModuleManagerController {
 		//sysModule.setMapplicationId(S_ID);//所属应用(默认已经赋值)
 		//sysModule.setMparentId(mparentId);// 父级模块(默认已经赋值 post和get参数 都有)
 		this.sysModuleService.saveOrUpdate(sysModule);
-		return "redirect:ModuleList?S_ID="+String.valueOf(S_ID);
+		MessageBox MBx = new MessageBox();
+		MBx.set_M_Title("操作成功");
+		MBx.set_M_IconType(Icon_Type.OK);
+		MBx.set_M_Body("增加应用模块ID("+ModuleId+")成功!");
+		List<sys_NavigationUrl> buttonList=new 	ArrayList<sys_NavigationUrl>();
+		sys_NavigationUrl nav=new sys_NavigationUrl("确定","Manager/Module/FrameWork/SystemApp/ModuleManager/ModuleList?S_ID="+String.valueOf(S_ID),"点击按钮返回！",UrlType.Href,true);
+		buttonList.add(nav);
+		MBx.set_M_ButtonList(buttonList);		
+		redirectAttributes.addFlashAttribute("mbx", MBx);
+    	return "redirect:/Manager/Message";		
+		//return "redirect:ModuleList?S_ID="+String.valueOf(S_ID);
 //		if(sysModule.getMparentId()==0)
 //		{
 //			return "redirect:ModuleList?S_ID="+String.valueOf(S_ID);
@@ -168,7 +185,7 @@ public class ModuleManagerController {
 			@RequestParam(value="ModuleId",defaultValue="0") int ModuleId,
 			@ModelAttribute("sysModule") @Valid SysModule sysModule,
 			BindingResult result,
-			ModelMap modelMap) 
+			RedirectAttributes redirectAttributes) 
 	{
 		
 		if(result.hasErrors())
@@ -179,7 +196,17 @@ public class ModuleManagerController {
 		SysModule sModule=this.sysModuleService.selectSysModuleByPrimaryKey(ModuleId);
 		BeanUtils.copyProperties(sysModule,sModule,new String[]{"moduleId","mapplicationId","mparentId"});
 		this.sysModuleService.saveOrUpdate(sModule);
-		return "redirect:ModuleList?S_ID="+String.valueOf(S_ID);
+		MessageBox MBx = new MessageBox();
+		MBx.set_M_Title("操作成功");
+		MBx.set_M_IconType(Icon_Type.OK);
+		MBx.set_M_Body("编辑应用模块ID("+ModuleId+")成功!");
+		List<sys_NavigationUrl> buttonList=new 	ArrayList<sys_NavigationUrl>();
+		sys_NavigationUrl nav=new sys_NavigationUrl("确定","Manager/Module/FrameWork/SystemApp/ModuleManager/ModuleList?S_ID="+String.valueOf(S_ID),"点击按钮返回！",UrlType.Href,true);
+		buttonList.add(nav);
+		MBx.set_M_ButtonList(buttonList);		
+		redirectAttributes.addFlashAttribute("mbx", MBx);
+    	return "redirect:/Manager/Message";		
+		//return "redirect:ModuleList?S_ID="+String.valueOf(S_ID);
 //		if(sModule.getMparentId()==0)
 //		{
 //			return "redirect:ModuleList?S_ID="+String.valueOf(S_ID);
@@ -191,7 +218,7 @@ public class ModuleManagerController {
 	public String moduleManagerdel(				
 			@RequestParam(value="S_ID") int S_ID,
 			@RequestParam(value="ModuleId",defaultValue="0") int ModuleId,			
-			ModelMap modelMap) 
+			RedirectAttributes redirectAttributes) 
 	{
 		
 		//SysModule sModule=this.sysModuleService.selectSysModuleByPrimaryKey(ModuleId);
@@ -200,7 +227,18 @@ public class ModuleManagerController {
 		//System.out.println("正在删除的模块的父模块ID："+temp);
 		this.sysModuleService.deleteByPrimaryKey(ModuleId);
 		
-		return "redirect:ModuleList?S_ID="+String.valueOf(S_ID);
+		MessageBox MBx = new MessageBox();
+		MBx.set_M_Title("操作成功");
+		MBx.set_M_IconType(Icon_Type.OK);
+		MBx.set_M_Body("删除应用模块ID("+ModuleId+")成功!");
+		List<sys_NavigationUrl> buttonList=new 	ArrayList<sys_NavigationUrl>();
+		sys_NavigationUrl nav=new sys_NavigationUrl("确定","Manager/Module/FrameWork/SystemApp/ModuleManager/ModuleList?S_ID="+String.valueOf(S_ID),"点击按钮返回！",UrlType.Href,true);
+		buttonList.add(nav);
+		MBx.set_M_ButtonList(buttonList);		
+		redirectAttributes.addFlashAttribute("mbx", MBx);
+    	return "redirect:/Manager/Message";		
+    	
+		//return "redirect:ModuleList?S_ID="+String.valueOf(S_ID);
 //		if(temp==0)
 //		{
 //			return "redirect:ModuleList?S_ID="+String.valueOf(S_ID);
@@ -211,8 +249,7 @@ public class ModuleManagerController {
 	@RequestMapping(value={"/left"},method=GET)
 	public String left(			
 			ModelMap modelMap) 
-	{
-		
+	{		
 		List<SysModule> list_parentModule=this.sysModuleService.selectParentModules();
 		modelMap.addAttribute("module", list_parentModule);
 		return "Manager/left";	

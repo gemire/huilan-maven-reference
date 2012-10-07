@@ -70,13 +70,13 @@
                         <td class="table_body">
                             框架版本</td>
                         <td class="table_none">
-                            <span id="ctl00_PageBody_FrameWorkVer"> <%=sysinfo.getSversion()%><font size='2'>(MsSql)</font><font color=red>当前已是最新版本!</font></span></td>
+                            <span id="ctl00_PageBody_FrameWorkVer"> <%=sysinfo.getSversion()%><font size='2'>(MySql)</font><font color=red>当前已是最新版本!</font></span></td>
                     </tr>
                     <tr>
                         <td class="table_body">
                             官方网站</td>
                         <td class="table_none">
-                            <a id="ctl00_PageBody_FrameWorkWeb" href="http://www.faydrian.com" target="_blank">http://www.faydrian.com</a></td>
+                            <a id="ctl00_PageBody_FrameWorkWeb" href="http://www.faydrian.com" target="_blank">http://www.outletss.com</a></td>
                     </tr>                    
 		</table>
         </DIV><!--内容框End-->
@@ -93,3 +93,35 @@
         </TBODY>
         </TABLE>
         <!--选项卡 End-->
+        <script language='javascript'>
+        //alert("${ctx}");
+        function tabClick(idx,count) {
+          for (i_tr = 0; i_tr < count; i_tr++) {
+            if (i_tr == idx) {
+              var tabImgLeft = document.getElementById('tabImgLeft__' + idx);
+              var tabImgRight = document.getElementById('tabImgRight__' + idx);
+              var tabLabel = document.getElementById('tabLabel__' + idx);
+              var tabContent = document.getElementById('tabContent__' + idx);
+
+              tabImgLeft.src = '${ctx}/Manager/images/Menu/tab_active_left.gif';
+              tabImgRight.src = '${ctx}/Manager/images/Menu/tab_active_right.gif';
+              tabLabel.style.backgroundImage = "url(${ctx}/Manager/images/Menu/tab_active_bg.gif)";
+              tabContent.style.visibility = 'visible';
+              tabContent.style.display = 'block';
+              continue;
+            }
+            var tabImgLeft = document.getElementById('tabImgLeft__' + i_tr);
+            var tabImgRight = document.getElementById('tabImgRight__' + i_tr);
+            var tabLabel = document.getElementById('tabLabel__' + i_tr);
+            var tabContent = document.getElementById('tabContent__' + i_tr);
+
+            tabImgLeft.src = '${ctx}/Manager/images/Menu/tab_unactive_left.gif';
+            tabImgRight.src = '${ctx}/Manager/images/Menu/tab_unactive_right.gif';
+            tabLabel.style.backgroundImage = "url(${ctx}/Manager/images/Menu/tab_unactive_bg.gif)";
+            tabContent.style.visibility = 'hidden';
+            tabContent.style.display = 'none';
+          }
+          document.getElementById('FrameWork_YOYO_LzppccSelectIndex').value=idx;
+        }
+        tabClick(0,1);
+       </script>

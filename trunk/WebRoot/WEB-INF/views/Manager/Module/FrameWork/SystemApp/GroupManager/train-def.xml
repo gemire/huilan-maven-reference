@@ -4,9 +4,24 @@
   
 <tiles-definitions>
    <!--<start id="spittleListTileDef"/>--> 
-   <definition name="GroupManager/Frame" extends="maintemplate">
+   <definition name="GroupManager/Frame" template="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/GroupManager/Frame.jsp"/>
+   
+   <!--<end id="spittleListTileDef"/>-->
+   
+   <definition name="GroupManager/CatIndex" template="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/GroupManager/CatIndex.jsp"/>
+   
+   <definition name="GroupManager/GroupList" extends="maintemplate">
     <put-attribute name="content" 
-                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/GroupManager/Frame.jsp" />
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/GroupManager/GroupList.jsp" />
    </definition>
-   <!--<end id="spittleListTileDef"/>-->   
+   <definition name="GroupManager/Manager" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/GroupManager/New.jsp" />
+   </definition>   
+   <definition name="GroupManager/Orderby" extends="maintemplate">
+    <put-attribute name="content" 
+                   value="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/GroupManager/Orderby.jsp" />
+   </definition>
+   <definition name="GroupManager/Move" template="/WEB-INF/views/Manager/Module/FrameWork/SystemApp/GroupManager/Move.jsp"/>
+    
 </tiles-definitions>

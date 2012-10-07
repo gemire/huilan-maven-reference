@@ -14,13 +14,15 @@
    <div id="box_news">
     <div class="title_01"><a href="${ctx}/news" target="_blank"><img src="${ctx}/images/title_02.gif" alt="新闻中心" border="0" /></a></div>
     <div class="news_list">
-     <ul >
-      <li><a href="${ctx}/news/fgdfg" target="_blank">长沙金砖房地产公司李克强：逐步扩大房产税改革试点长沙金砖房地产公司李克强：逐步扩大房产税改革试点</a></li>
-      <li><a href="#" >湖南中联房地产顾问有限公司</a></li>
-      <li><a href="#" >嘉业地产长沙金砖房地产公司李克强：逐步扩大房产税改革试点</a></li>
-      <li><a href="#" >长沙市荣志房地产经纪有限公司</a></li>
-      <li><a href="#">湖南建安房屋联动营销有限公司</a></li>
+    
+    <c:if test="${not empty list4}">
+    <ul >
+    <c:forEach var="news" items="${list4}" varStatus="status">
+    <li><a href="${ctx}/news/${news.newsId}" target="_blank">${news.newsTitle}</a></li>       
+      </c:forEach>      
      </ul>
+    </c:if>
+     
     </div>
    </div>
   </div>
@@ -53,13 +55,14 @@
    <div id="box_research">
     <div class="title_01"><a href="${ctx}/research" target="_blank"><img src="${ctx}/images/title_05.gif" alt="业态研究" width="420" height="34" border="0" /></a></div>
     <div class="research_list">
-     <ul >
-      <li><a href="${ctx}/research/dssss" target="_blank">长沙金砖房地产公司李克强：逐步扩大房产税改革试点长沙金砖房地产公司李克强：逐步扩大房产税改革试点</a></li>
-      <li><a href="#" >湖南中联房地产顾问有限公司</a></li>
-      <li><a href="#" >嘉业地产长沙金砖房地产公司李克强：逐步扩大房产税改革试点</a></li>
-      <li><a href="#" >长沙市荣志房地产经纪有限公司</a></li>
-      <li><a href="#">湖南建安房屋联动营销有限公司</a></li>
+     <c:if test="${not empty list5}">
+    <ul >
+    <c:forEach var="news" items="${list5}" varStatus="status">    
+      <li><a href="${ctx}/research/${news.newsId}" target="_blank">${news.newsTitle}</a></li> 
+      </c:forEach>      
      </ul>
+    </c:if>
+     
     </div>
    </div>
   </div>

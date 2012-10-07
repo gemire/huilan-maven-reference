@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="com.hedgehog.outletss.domain.*"%>
-<%@page import="com.hedgehog.outletss.Utils.QueryPara"%>
+<%@page import="com.hedgehog.outletss.domain.QueryPara"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
@@ -13,7 +13,7 @@
               </tr>
               <tr>
                 <td height='27px' class='menubar_function_text'>目前操作功能：新闻列表</td>
-                <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='?cmd=new';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/new.gif">&nbsp;新增新闻</td></tr></table></td>
+                <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='Manager?cmd=new';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/new.gif">&nbsp;新增新闻</td></tr></table></td>
               </tr>
               <tr><td height='5px' colspan='2'></td></tr>
             </table>
@@ -66,7 +66,7 @@
         <DIV id='tabContent__0' style='display:none'>
             <div>
 <%
-            List<BizNew> list=(List<BizNew>)request.getAttribute("list"); 
+  List<BizNew> list=(List<BizNew>)request.getAttribute("list"); 
   QueryPara<BizNew> qp=(QueryPara<BizNew>)request.getAttribute("queryPara"); 
   int pagecount=qp.getPagecount();
   int pageNo=qp.getPageNo();  
@@ -103,10 +103,10 @@
 			<td><%=temp+(pageNo-1)*pagesize%></td>
                         <td><%=syNew.getNewsTitle()%></td>
                         <td>                        
-                        <%=syNew.getNewsCate()%>
+                        <%=syNew.getFieldValue().getVtext()%>
                         </td>
                         <td><%=syNew.getNewsSource()%></td>
-                        <td><%=syNew.getNewsHits()%></td><td><%=syNew.getNewsUpdatetime()%></td><td><a href="?cmd=edit&IDX=<%=syNew.getNewsId()%>">编辑</a>||<a href="JavaScript:DelData('?cmd=del&IDX=<%=syNew.getNewsId()%>')">删除</a></td>
+                        <td><%=syNew.getNewsHits()%></td><td><%=syNew.getNewsUpdatetime()%></td><td><a href="Manager?cmd=edit&IDX=<%=syNew.getNewsId()%>">编辑</a>||<a href="JavaScript:DelData('Manager?cmd=del&IDX=<%=syNew.getNewsId()%>')">删除</a></td>
 		</tr>
 		<%    
     }

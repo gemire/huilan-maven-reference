@@ -44,7 +44,7 @@
 	
 	    <context:property-placeholder location="classpath:hibernate.properties" />
 	    <!-- 数据源配置, 使用应用中的DBCP数据库连接池 -->
-		<bean id="dataSourceTarget" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">			
+		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">			
 			<property name="driverClassName" value="${jdbc.driver}" />
 			<property name="url" value="${jdbc.url}" />
 			<property name="username" value="${jdbc.username}" />
@@ -57,11 +57,11 @@
 			<property name="timeBetweenEvictionRunsMillis" value="3600000" />
 			<property name="minEvictableIdleTimeMillis" value="3600000" />
 		</bean>
-		<bean id="dataSource" class="com.p6spy.engine.spy.P6DataSource">  
+		<!-- <bean id="dataSource" class="com.p6spy.engine.spy.P6DataSource">  
        <constructor-arg>  
            <ref local="dataSourceTarget"/>  
        </constructor-arg>  
-  </bean> 
+  </bean> -->
        
   <!-- org.springframework.orm.hibernate4.LocalSessionFactoryBean -->
  <bean id="sessionFactory"
@@ -116,11 +116,18 @@
 		</property>
 	</bean>-->	
 
+    <!--<bean id="exceptionResolver" class="com.hedgehog.outletss.servlet.MyExceptionHandler"/>-->
+<!--<bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+      <property name="defaultErrorView" value="errorpages/failure"/>
+    </bean> -->
 	
     <!-- enable autowire -->
     <!-- <context:annotation-config />(使支持注解，配置component-scan后，该注解可省略)-->    
     <!-- enable transaction demarcation with annotations -->
     <tx:annotation-driven transaction-manager="hibernatetransactionManager"/>    
     <context:component-scan base-package="com.hedgehog.outletss.persistence" />
-    <context:component-scan base-package="com.hedgehog.outletss.service" />		
+    <context:component-scan base-package="com.hedgehog.outletss.service" />
+    <context:component-scan base-package="com.hedgehog.outletss.event" />
+    <context:component-scan base-package="com.hedgehog.outletss.servlet" />		
+    
 </beans>

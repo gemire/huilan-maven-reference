@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="com.hedgehog.outletss.domain.*"%>
-<%@page import="com.hedgehog.outletss.Utils.QueryPara"%>
+<%@page import="com.hedgehog.outletss.domain.QueryPara"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
@@ -148,7 +148,7 @@
         window.location.href = location.href+"&?"+rand(1000000);
     }
     
-    var gDefaultLogin = "${ctx}/Manager/inc/finemessbox/loading.html";    
+    var gDefaultLogin = "${ctx}/Manager/inc/FineMessBox/loading.html";    
     </script>
 <script language='javascript'>
         function tabClick(idx,count) {

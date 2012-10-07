@@ -7,13 +7,19 @@ import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode
 import static org.apache.commons.lang.builder.ToStringBuilder.reflectionToString;
 
 import java.sql.Timestamp;
+import java.util.regex.Pattern;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -49,7 +55,7 @@ public class BizNew  implements java.io.Serializable {
  *             length="40"
  *         
      */
-     private String newsCate;
+     private Integer newsCate;
      /**
       *            @hibernate.property
  *             column="News_content"
@@ -88,6 +94,9 @@ public class BizNew  implements java.io.Serializable {
      
      private String newsSource;
      private Integer newsHits;
+     private SysFieldValue FieldValue;
+     
+     private String[] newsFlag;
 
     
    
@@ -129,12 +138,12 @@ public class BizNew  implements java.io.Serializable {
      *             length="40"
      *         
      */
-    @Column(name="News_cate",length=40)
-    public String getNewsCate() {
+    @Column(name="News_cate",length=10)
+    public Integer getNewsCate() {
         return this.newsCate;
     }
     
-    public void setNewsCate(String newsCate) {
+    public void setNewsCate(Integer newsCate) {
         this.newsCate = newsCate;
     }
     /**       
@@ -173,6 +182,7 @@ public class BizNew  implements java.io.Serializable {
      */
     @Column(name="News_summery",length=500)
     public String getNewsSummery() {
+    	//return texttools.Html2Text(this.newsContent);
         return this.newsSummery;
     }
     
@@ -226,6 +236,44 @@ public class BizNew  implements java.io.Serializable {
 	public void setNewsHits(Integer newsHits) {
 		this.newsHits = newsHits;
 	}
+	@ManyToOne(cascade={CascadeType.REFRESH},fetch = FetchType.LAZY)
+    @JoinColumn(name="News_cate",insertable=false,updatable=false)
+    public SysFieldValue getFieldValue() {
+		return FieldValue;
+	}
+
+	public void setFieldValue(SysFieldValue fieldValue) {
+		FieldValue = fieldValue;
+	}
+	
+	
+	@Transient
+	public String[] getNewsFlag() {
+		if(this.newsProperties!=null)
+		{
+			return this.newsProperties.split(",");
+			
+		}
+		return null;
+	}
+
+	public void setNewsFlag(String[] newsFlag) {
+		if(newsFlag!=null)
+		{
+			StringBuffer buf  = new StringBuffer();
+			for(String str:newsFlag)
+			{
+				buf.append(str+",");
+			}
+			String oldStr=buf.toString();
+			if(oldStr!="")
+			{
+				this.newsProperties=oldStr.substring(0,oldStr.length() - 1); 
+			}
+			
+		}
+		//this.newsFlag = newsFlag;
+	}
 
 	// plumbing
     @Override
@@ -242,6 +290,7 @@ public class BizNew  implements java.io.Serializable {
     public String toString() {
       return reflectionToString(this);
     }
+    
 
 
 }

@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.googlecode.ehcache.annotations.Cacheable;
 import com.googlecode.ehcache.annotations.TriggersRemove;
 import com.googlecode.ehcache.annotations.When;
-import com.hedgehog.outletss.Utils.QueryPara;
+import com.hedgehog.outletss.domain.QueryPara;
 import com.hedgehog.outletss.domain.SysField;
 import com.hedgehog.outletss.domain.SysFieldValue;
 import com.hedgehog.outletss.persistence.SysFieldDao;
@@ -54,6 +54,7 @@ public class SysFieldServiceImpl implements SysFieldService{
 	
 	public SysFieldValue selectFieldValueByPrimaryKey(Serializable valueId) {
 		// TODO Auto-generated method stub
+		
 		return this.sysFieldDao.selectFieldValueByPrimaryKey(valueId);
 	}
 	
@@ -68,7 +69,7 @@ public class SysFieldServiceImpl implements SysFieldService{
 	}
 	
 	public List<SysFieldValue> selectFieldValueRecordByvfKey(String vfKey) {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub		
 		return this.sysFieldDao.selectFieldValueRecordByvfKey(vfKey);
 	}
 

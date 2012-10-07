@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="com.hedgehog.outletss.domain.*"%>
-<%@page import="com.hedgehog.outletss.Utils.QueryPara"%>
+<%@page import="com.hedgehog.outletss.domain.QueryPara"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,7 +8,8 @@
 <c:if test="${not empty TabJs}">
 ${TabJs}
 </c:if>
-<form:form modelAttribute="fieldvalue">
+<form:form modelAttribute="fieldvalue" name='fieldvalueform'>
+<input type="hidden" value="0" name="test" id="test"/>
 <table id="ctl00_PageBody_Table_Manager_FieldValue" width="100%" border="0" cellspacing="1" cellpadding="3" align="center">
 	<tr id="ctl00_PageBody_TopTr">
 		<td class="table_body">
@@ -41,7 +42,10 @@ ${TabJs}
 	<tr>
 		<td colspan="2" align="right" style="height: 26px">
                                     <input type="submit" name="ctl00$PageBody$Button1" value="确定" id="ctl00_PageBody_Button1" class="button_bak" />
-                                    <input type="submit" name="ctl00$PageBody$Button2" value="删除" onclick="return doConfirm(this.form);" id="ctl00_PageBody_Button2" class="button_bak" />
+                      <c:if test="${param.cmd eq 'edit'}">
+		<input type="submit" name="ctl00$PageBody$Button2" value="删除" onclick="document.getElementById('test').value='1';return doConfirm(this.form);" id="ctl00_PageBody_Button2" class="button_bak" />
+	</c:if>    
+                                    
                     <input id="Reset1" class="button_bak" type="reset" value="重填" />
                 </td>
 	</tr>

@@ -11,7 +11,7 @@ response.setHeader("P3P","CP='IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi H
   <head>
     <title><t:insertAttribute name="title"/></title>
     <link rel="stylesheet" href="${ctx}/Manager/Css/Site_Css.css" type="text/css">
-    <link rel="stylesheet" href="${ctx}<s:theme code='styleSheet'/>" type="text/css">
+    <link rel="stylesheet" href="${ctx}/<s:theme code='styleSheet'/>" type="text/css">
     <link rel="shortcut icon" href="${ctx}/Manager/images/icon.ico" type="image/x-icon" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>   
 <script type="text/javascript" src="${ctx}/Manager/js/checkform.js" charset="utf-8"></script>

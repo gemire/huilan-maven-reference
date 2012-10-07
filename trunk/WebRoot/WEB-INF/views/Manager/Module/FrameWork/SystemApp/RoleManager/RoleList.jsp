@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@page import="com.hedgehog.outletss.domain.*"%>
-<%@page import="com.hedgehog.outletss.Utils.QueryPara"%>
+<%@page import="com.hedgehog.outletss.domain.QueryPara"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
@@ -12,7 +12,7 @@
               </tr>
               <tr>
                 <td height='27px' class='menubar_function_text'>目前操作功能：角色列表</td>
-                <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='RoleManager.aspx?CMD=New';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/new.gif">&nbsp;新增角色</td></tr></table></td>
+                <td class='menubar_menu_td' align='right'><table border="0" cellspacing="0" cellpadding="0"><tr><td class="menubar_button" id="button_0" OnClick="JavaScript:window.location.href='RoleManager.aspx?cmd=new';" OnMouseOut="javascript:MenuOnMouseOver(this);" OnMouseOver="javascript:MenuOnMouseOut(this);"><img border="0" align="texttop" src="${ctx}/Manager/images/ICON/new.gif">&nbsp;新增角色</td></tr></table></td>
               </tr>
               <tr><td height='5px' colspan='2'></td></tr>
             </table>
@@ -64,7 +64,7 @@
              %>
 <table class="table-box" cellspacing="1" border="0" id="ctl00_PageBody_GridView1" style="background-color:White;border-width:0px;">
 		<tr class="table_title" align="center">
-			<th scope="col">角色名称</th><th scope="col">角色介绍</th><th scope="col">所属用户</th>
+			<th scope="col">角色名称</th><th scope="col">角色介绍</th><th scope="col">角色代号</th><th scope="col">所属用户</th><th scope="col">操作</th>
 		</tr>
 		<%
   Iterator<SysRole> it=list.iterator();  
@@ -80,10 +80,12 @@
     
     %>
     <tr class="<%=seq%2==1?"row":"row1"%>" align="center" style="height:28px;">
-			<td><a href="RoleManager?roleid=<%=sysRole.getRoleId()%>&cmd=edit"><%=sysRole.getRroleName()%></a></td>
+			<td><%=sysRole.getRroleName()%></td>
 			<td><%=sysRole.getRdescription()%></td>
+			<td><%=sysRole.getRroleCode()%></td>
 			<td><%=sysRole.getRsysUser().getUloginName()%></td>
-			</tr>
+			<td><a href="RoleManager?roleid=<%=sysRole.getRoleId()%>&cmd=edit">编辑</a>||<a href="JavaScript:DelData('RoleManager?cmd=del&roleid=<%=sysRole.getRoleId()%>')">删除</a></td>
+		</tr>
     <%
     }
     %>		
@@ -185,3 +187,35 @@ else
 	        </TR>
         </TBODY>
         </TABLE>
+        <script language='javascript'>
+        //alert("${ctx}");
+        function tabClick(idx,count) {
+          for (i_tr = 0; i_tr < count; i_tr++) {
+            if (i_tr == idx) {
+              var tabImgLeft = document.getElementById('tabImgLeft__' + idx);
+              var tabImgRight = document.getElementById('tabImgRight__' + idx);
+              var tabLabel = document.getElementById('tabLabel__' + idx);
+              var tabContent = document.getElementById('tabContent__' + idx);
+
+              tabImgLeft.src = '${ctx}/Manager/images/Menu/tab_active_left.gif';
+              tabImgRight.src = '${ctx}/Manager/images/Menu/tab_active_right.gif';
+              tabLabel.style.backgroundImage = "url(${ctx}/Manager/images/Menu/tab_active_bg.gif)";
+              tabContent.style.visibility = 'visible';
+              tabContent.style.display = 'block';
+              continue;
+            }
+            var tabImgLeft = document.getElementById('tabImgLeft__' + i_tr);
+            var tabImgRight = document.getElementById('tabImgRight__' + i_tr);
+            var tabLabel = document.getElementById('tabLabel__' + i_tr);
+            var tabContent = document.getElementById('tabContent__' + i_tr);
+
+            tabImgLeft.src = '${ctx}/Manager/images/Menu/tab_unactive_left.gif';
+            tabImgRight.src = '${ctx}/Manager/images/Menu/tab_unactive_right.gif';
+            tabLabel.style.backgroundImage = "url(${ctx}/Manager/images/Menu/tab_unactive_bg.gif)";
+            tabContent.style.visibility = 'hidden';
+            tabContent.style.display = 'none';
+          }
+          document.getElementById('FrameWork_YOYO_LzppccSelectIndex').value=idx;
+        }
+        tabClick(0,1);
+       </script>

@@ -29,7 +29,7 @@ int MenuStyle=0;
 	-->
     <link rel="stylesheet" href="${ctx}/Manager/Css/Site_Css.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="${ctx}/Manager/inc/FineMessBox/css/subModal.css" />
-    <link rel="shortcut icon" href="${ctx}/Manager/images/Icon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="${ctx}/Manager/images/icon.ico" type="image/x-icon" />
     <script type="text/javascript" src="${ctx}/Manager/inc/FineMessBox/js/common.js"></script>
 
     <script type="text/javascript" src="${ctx}/Manager/inc/FineMessBox/js/subModal.js"></script>    
@@ -172,7 +172,7 @@ p{
                 <table border="0" cellpadding="0" cellspacing="0" width="100%" height="20">
                     <tr>
                         <td class="down_text">
-                            Powered By <a href="http://www.faydrian.com" target="_blank"><font color="#ffffff">faydrian.com</font></a>
+                            Powered By <a href="http://www.outletss.com" target="_blank"><font color="#ffffff">outletss.com</font></a>
                             Information Technology Logistics Inc.</td>
                             <td align="right" width="460" bgcolor="#000000">
                             <table border="0" cellpadding="0" cellspacing="0" width="100%">

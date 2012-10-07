@@ -2,8 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:if test="${not empty tags}">
-<script language='javascript'>window.returnVal='个人资料修改成功';window.parent.hidePopWin(true);</script>
+<c:if test="${not empty TabJs}">
+${TabJs}
 </c:if>
 <form:form modelAttribute="sysUser">
 <form:hidden path="uloginName"/>

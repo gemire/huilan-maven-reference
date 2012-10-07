@@ -1,10 +1,18 @@
 package com.hedgehog.outletss.controller;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -12,7 +20,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.hedgehog.outletss.Utils.SearchParameter;
+import com.hedgehog.outletss.domain.BizNew;
+import com.hedgehog.outletss.domain.QueryPara;
+import com.hedgehog.outletss.service.BizNewService;
+
+
 
 
 /**
@@ -34,7 +46,34 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);		
 		modelMap.addAttribute("serverTime", formattedDate );
 		//modelMap.addAttribute("parameter", new SearchParameter());		
-		System.out.println("系统根目录："+System.getProperty("maven.example.root"));		
+		System.out.println("系统根目录："+System.getProperty("maven.example.root"));	
+		
+		QueryPara<BizNew> qp=new QueryPara<BizNew>();
+		qp.setClazz(BizNew.class);
+		qp.setPageNo(1);
+		qp.setPagesize(5);
+		List<Criterion> criterions=new ArrayList<Criterion>();
+		criterions.add(Restrictions.eq("newsCate", new Integer(4)));
+		qp.setCriterions(criterions);
+		List<Order> orders=new ArrayList<Order>();		
+		orders.add(Order.desc("newsId"));		
+		qp.setOrders(orders);		
+		List<BizNew> list4=this.bizNewService.selectRecordForPage(qp);
+		modelMap.addAttribute("list4", list4);
+		//modelMap.addAttribute("queryPara", qp);
+		QueryPara<BizNew> qp2=new QueryPara<BizNew>();
+		qp2.setClazz(BizNew.class);
+		qp2.setPageNo(1);
+		qp2.setPagesize(5);
+		List<Criterion> criterions2=new ArrayList<Criterion>();
+		criterions2.add(Restrictions.eq("newsCate", new Integer(5)));
+		qp2.setCriterions(criterions2);
+		List<Order> orders2=new ArrayList<Order>();		
+		orders2.add(Order.desc("newsId"));		
+		qp2.setOrders(orders2);		
+		List<BizNew> list=this.bizNewService.selectRecordForPage(qp2);
+		modelMap.addAttribute("list5", list);
+		
 		return "home";
 	}
 	/**
@@ -103,8 +142,29 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping(value={"/research"}, method=RequestMethod.GET)
-	public String shownewsvidseddsw(ModelMap model)
-	{		
+	public String shownewsvidseddsw(ModelMap modelMap)
+	{	
+		QueryPara<BizNew> qp=new QueryPara<BizNew>();
+		qp.setClazz(BizNew.class);
+		qp.setPageNo(1);
+		qp.setPagesize(5);
+		List<Criterion> criterions=new ArrayList<Criterion>();
+		criterions.add(Restrictions.eq("newsCate", new Integer(5)));
+		qp.setCriterions(criterions);
+		List<Order> orders=new ArrayList<Order>();		
+		orders.add(Order.desc("newsId"));		
+		qp.setOrders(orders);		
+		List<BizNew> list=this.bizNewService.selectRecordForPage(qp);
+		//Iterator<BizNew> itr=list.iterator();
+		
+//		while(itr.hasNext())
+//		{
+//			((BizNew)itr.next()).setNewsSummery(texttools.Html2Text(((BizNew)itr.next()).getNewsContent().trim()));
+//			
+//		}
+		//bizNew.setNewsSummery(texttools.Html2Text(bizNew.getNewsContent().trim()));
+		modelMap.addAttribute("list", list);
+		modelMap.addAttribute("queryPara", qp);
 		return "research";
 	}
 	/**
@@ -115,10 +175,20 @@ public class HomeController {
 	 */
 	@RequestMapping(value={"/research/{newsId}"}, method=RequestMethod.GET)
 	public String shownewsvidsdseddsw(
-			@PathVariable("newsId") String newsId,
-			ModelMap model)
-	{		
+			@PathVariable("newsId") int newsId,
+			ModelMap modelMap)
+	{	
+		BizNew bizNew=this.bizNewService.selectByPrimaryKey(newsId);
+		
+    	modelMap.addAttribute("bizNew", bizNew); 
 		return "research_detail";
+	}
+	
+    private BizNewService bizNewService;
+    
+	@Autowired
+	public void setBizNewService(BizNewService bizNewService) {
+		this.bizNewService = bizNewService;
 	}
 	/**
 	 * 新闻中心
@@ -126,10 +196,21 @@ public class HomeController {
 	 * @return
 	 */
 	@RequestMapping(value={"/news"}, method=RequestMethod.GET)
-	public String shownewsview(ModelMap model)
+	public String shownewsview(ModelMap modelMap)
 	{
-		System.out.println("有没有到这里news页 修改文件");
-		model.addAttribute("title", "中科汇联");
+		QueryPara<BizNew> qp=new QueryPara<BizNew>();
+		qp.setClazz(BizNew.class);
+		qp.setPageNo(1);
+		qp.setPagesize(6);
+		List<Criterion> criterions=new ArrayList<Criterion>();
+		criterions.add(Restrictions.eq("newsCate", new Integer(4)));
+		qp.setCriterions(criterions);
+		List<Order> orders=new ArrayList<Order>();		
+		orders.add(Order.desc("newsId"));		
+		qp.setOrders(orders);		
+		List<BizNew> list=this.bizNewService.selectRecordForPage(qp);
+		modelMap.addAttribute("list", list);
+		modelMap.addAttribute("queryPara", qp);
 		return "news";
 	}
 	/**
@@ -140,11 +221,12 @@ public class HomeController {
 	 */
 	@RequestMapping(value={"/news/{newsId}"}, method=RequestMethod.GET)
 	public String shownewsvfhiew(
-			@PathVariable("newsId") String newsId,
-			ModelMap model)
+			@PathVariable("newsId") int newsId,
+			ModelMap modelMap)
 	{
-		System.out.println("有没有到这里news页 修改文件");
-		model.addAttribute("title", "中科汇联");
+		BizNew bizNew=this.bizNewService.selectByPrimaryKey(newsId);
+    	modelMap.addAttribute("bizNew", bizNew); 
+    	//modelMap.addAttribute("title", bizNew.getNewsTitle()); 
 		return "news_detail";
 	}
 	/**
@@ -157,5 +239,6 @@ public class HomeController {
 	{		
 		return "conter";
 	}
+	
 
 }

@@ -32,38 +32,17 @@
        </table>
       </div>
       <div class="ny_news_list">
-       <ul >
-        <li class="list">
-         <h1><a href="${ctx}/news/fshfg" target="_blank"> 澳洲知名大学校长受聘我司独立董事澳洲知名大学校长受聘我司独立董事澳洲知名大学校长受聘我司独立董事</a></h1>
+      <c:if test="${not empty list}">
+      <ul>
+      <c:forEach var="news" items="${list}" varStatus="status">
+       <li class="list">
+         <h1><a href="${ctx}/news/${news.newsId}" target="_blank"> ${news.newsTitle}</a></h1>
          <div class="more"><img src="${ctx}/images/more_01.gif" alt="更多" /></div>
         </li>
         <li class="clearBoth"></li>
-        <li class="list">
-         <h1><a href="#" > 澳洲知名大学校长受聘我司独立董事</a></h1>
-         <div class="more"><img src="${ctx}/images/more_01.gif" alt="更多" /></div>
-        </li>
-        <li class="clearBoth"></li>
-        <li class="list">
-         <h1><a href="#" > 澳洲知名大学校长受聘我司独立董事</a></h1>
-         <div class="more"><img src="${ctx}/images/more_01.gif" alt="更多" /></div>
-        </li>
-        <li class="clearBoth"></li>
-        <li class="list">
-         <h1><a href="#" > 澳洲知名大学校长受聘我司独立董事</a></h1>
-         <div class="more"><img src="${ctx}/images/more_01.gif" alt="更多" /></div>
-        </li>
-        <li class="clearBoth"></li>
-        <li class="list">
-         <h1><a href="#" > 澳洲知名大学校长受聘我司独立董事</a></h1>
-         <div class="more"><img src="${ctx}/images/more_01.gif" alt="更多" /></div>
-        </li>
-        <li class="clearBoth"></li>
-        <li class="list">
-         <h1><a href="#" > 澳洲知名大学校长受聘我司独立董事</a></h1>
-         <div class="more"><img src="${ctx}/images/more_01.gif" alt="更多" /></div>
-        </li>
-        <li class="clearBoth"></li>
-       </ul>
+      </c:forEach>       
+        </ul>      
+      </c:if>       
       </div>
      </div>
     </div>
