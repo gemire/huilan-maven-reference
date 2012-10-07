@@ -260,16 +260,21 @@ public class BizNew  implements java.io.Serializable {
 	public void setNewsFlag(String[] newsFlag) {
 		if(newsFlag!=null)
 		{
-			StringBuffer buf  = new StringBuffer();
-			for(String str:newsFlag)
+			if(newsFlag.length>0)
 			{
-				buf.append(str+",");
+				StringBuffer buf  = new StringBuffer();
+				for(String str:newsFlag)
+				{
+					buf.append(str+",");
+				}
+				String oldStr=buf.toString();
+				if(oldStr!="")
+				{
+					this.newsProperties=oldStr.substring(0,oldStr.length() - 1); 
+				}
+				
 			}
-			String oldStr=buf.toString();
-			if(oldStr!="")
-			{
-				this.newsProperties=oldStr.substring(0,oldStr.length() - 1); 
-			}
+			
 			
 		}
 		//this.newsFlag = newsFlag;
