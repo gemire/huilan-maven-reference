@@ -76,7 +76,7 @@ public class SystemConfigController {
 		MBx.set_M_IconType(Icon_Type.OK);
 		MBx.set_M_Body("修改环境配置成功!");
 		List<sys_NavigationUrl> buttonList=new 	ArrayList<sys_NavigationUrl>();
-		sys_NavigationUrl nav=new sys_NavigationUrl("确定","Manager/Module/FrameWork/SystemApp/SystemConfig/Default","点击按钮返回！",UrlType.Href,true);
+		sys_NavigationUrl nav=new sys_NavigationUrl("确定","Manager/Module/FrameWork/SystemMaintenance/SystemConfig/Default","点击按钮返回！",UrlType.Href,true);
 		buttonList.add(nav);
 		MBx.set_M_ButtonList(buttonList);		
 		redirectAttributes.addFlashAttribute("mbx", MBx);

@@ -121,8 +121,10 @@ public class HomeController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value={"/alliance_detail"}, method=RequestMethod.GET)
-	public String shownewsdvghidsedsw(ModelMap model)
+	@RequestMapping(value={"/alliance/{allianceId}"}, method=RequestMethod.GET)
+	public String shownewsdvghidsedsw(
+			@PathVariable("allianceId") int allianceId,
+			ModelMap model)
 	{		
 		return "alliance_detail";
 	}

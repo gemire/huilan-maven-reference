@@ -154,7 +154,7 @@ public class SysRole  implements java.io.Serializable {
      *         
      */
     /**
-     * soyumusic版本没有此项
+     * outletss版本没有此项
      * @return
      */
     @Column(name="R_RoleCode",length=20)

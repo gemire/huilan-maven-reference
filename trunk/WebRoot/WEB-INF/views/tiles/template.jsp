@@ -17,6 +17,7 @@
 <tiles:insertAttribute name="box_main"/>
 <tiles:insertAttribute name="box_footer"/>
 </div>
+<script type="text/javascript" src="http://js.tongji.linezing.com/2989608/tongji.js"></script><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2989608/tongji.gif"/></a></noscript>
 </body>
 </html>
 
