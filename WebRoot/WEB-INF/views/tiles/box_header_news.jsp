@@ -6,7 +6,7 @@
   <div id="box_nav">
    <ul>
     <li><a href="${ctx}/home" onclick="javascript:getBg(0)" id="mynav0"><span>HOME</span></a></li>
-    <li><a href="${ctx}/about" onclick="javascript:getBg(1)" id="mynav1"><span>关于奥莱特斯</span></a></li>
+    <li><a href="${ctx}/about" onclick="javascript:getBg(1)" id="mynav1"><span>关于奥特莱斯</span></a></li>
     <li><a href="${ctx}/inchina" onclick="javascript:getBg(2)" id="mynav2"><span>奥特莱斯联盟</span></a></li>
     <li><a href="${ctx}/research" onclick="javascript:getBg(3)" id="mynav3"><span>业态研究</span></a></li>
     <li><a href="${ctx}/news" onclick="javascript:getBg(4)" id="mynav4" class="current"><span>新闻中心</span></a></li>
